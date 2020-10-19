@@ -20,4 +20,6 @@ elif d==0:
     print(e);
 else:
     print('이 방정식은 허근을 갖습니다. ');
-    print('따라서 계산할 수 없습니다. ');
+    e = (-b / (2 * a));
+    f = round(math.sqrt(abs(b * b - 4 * a * c)) / 2 * a,3);
+    print(str(e)+'+-'+str(f)+'i');

@@ -7,7 +7,7 @@ def isPrime(a):
         return False #1은 특수한 취급이라 제일 작은 소수는 2
     for i in range (2,a):
         if(a%i==0):
-            return False #소수는 1과 자기 자신으로만 나누어짐
+            return False
     return True
 
 for i in range (n+1):

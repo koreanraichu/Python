@@ -1,11 +1,11 @@
 function exdelta(~,~,~)
-pathway=input('°æ·Î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. '); %'' Æ÷ÇÔÇÒ°Í
-del1=input('Ã¹ ¹øÂ° ¹üÀ§¸¦ ³Ö¾îÁÖ¼¼¿ä. '); %µû¿ÈÇ¥ ¤·¤· 
-del2=input('µÎ ¹øÂ° ¹üÀ§¸¦ ³Ö¾îÁÖ¼¼¿ä. '); %µû¿ÈÇ¥ ¤·¤· 
+pathway=input('ê²½ë¡œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. '); %'' í¬í•¨í• ê²ƒ
+del1=input('ì²« ë²ˆì§¸ ë²”ìœ„ë¥¼ ë„£ì–´ì£¼ì„¸ìš”. '); %ë”°ì˜´í‘œ ã…‡ã…‡ 
+del2=input('ë‘ ë²ˆì§¸ ë²”ìœ„ë¥¼ ë„£ì–´ì£¼ì„¸ìš”. '); %ë”°ì˜´í‘œ ã…‡ã…‡ 
 avr1=xlsread(pathway,1,del1);
 avr2=xlsread(pathway,1,del2);
 DELTA1=mean(avr1);
 DELTA2=mean(avr2);
 DELTA=DELTA2-DELTA1;
-fprintf('¥Ä´Â %s \n', num2str(DELTA))
-%À½ ÁÁ¾Æ ÀÌ»ó¹« ¤·¤· 
+fprintf('Î”ëŠ” %s \n', num2str(DELTA))
+%ìŒ ì¢‹ì•„ ì´ìƒë¬´ ã…‡ã…‡%

@@ -1,7 +1,8 @@
 function pentaplot (~)
-%°æ·Î¿Í ÆÄÀÏ¸í, ¹üÀ§´Â ºñ½ÁÇÑµ¥ ÅëÇÕÀÌ ¾ÈµÇ°íÀÖ¾î...
-disp('¾î¶² ±×·¡ÇÁ¸¦ ±×¸®·¯ ¿Â °Å¾ß? adjusted? ¾Æ´Ô reference channel ÀÖ´Â °Å?');
-select=input('reference channelÀÌ ÀÖ´Â ±×·¡ÇÁ¸¦ ±×¸®·¯ ¿Ô´Ù¸é 3, ¾Æ´Ï¸é 2¸¦ ÀÔ·ÂÇØÁà. µÑ ´Ù ±×¸®´Â°Å¸é 2+3Àº 5! ');
+%ê²½ë¡œì™€ íŒŒì¼ëª…, ë²”ìœ„ëŠ” ë¹„ìŠ·í•œë° í†µí•©ì´ ì•ˆë˜ê³ ìˆì–´...
+%ì°¸ê³ : ê·¸ë˜í”„ ë ˆì „ë“œë‚˜ ë¼ë²¨ì€ í•¨ìˆ˜ë‹¨ì—ì„œ ë°”ê¿”ì•¼ í•©ë‹ˆë‹¤. ì´ê±´ ë‚˜ ì“°ë ¤ê³  ë§Œë“ ê±°ì§€ ë°°í¬ìš©ìœ¼ë¡œ ë§Œë“ ê²Œ ì•„ë‹˜. 
+disp('ì–´ë–¤ ê·¸ë˜í”„ë¥¼ ê·¸ë¦¬ëŸ¬ ì˜¨ ê±°ì•¼? adjusted? ì•„ë‹˜ reference channel ìˆëŠ” ê±°?');
+select=input('reference channelì´ ìˆëŠ” ê·¸ë˜í”„ë¥¼ ê·¸ë¦¬ëŸ¬ ì™”ë‹¤ë©´ 3, ì•„ë‹ˆë©´ 2ë¥¼ ì…ë ¥í•´ì¤˜. ë‘˜ ë‹¤ ê·¸ë¦¬ëŠ”ê±°ë©´ 2+3ì€ 5! ');
     if (select==3)
         run extriplot;
     elseif (select==2)
@@ -9,21 +10,21 @@ select=input('reference channelÀÌ ÀÖ´Â ±×·¡ÇÁ¸¦ ±×¸®·¯ ¿Ô´Ù¸é 3, ¾Æ´Ï¸é 2¸¦ ÀÔ·Â
     elseif (select==5)
         run expentplot;
     else
-        disp('¶È¹Ù·Î ÀÔ·ÂÇÏÁö ¸øÇÏ°Ú¾î?');
+        disp('ë˜‘ë°”ë¡œ ì…ë ¥í•˜ì§€ ëª»í•˜ê² ì–´?');
     end
-    disp('ÀúÀåÀº saveas¸¦ ÀÌ¿ëÇÏ¸é Æí...ÇÑ°¡? ¾Æ ¸ğ¸£°Ú´Ù ³­ ±ÍÂú¾Æ! ÀÚ, ³» ÀÏÀº ¿©±â±îÁö!');
+    disp('ì €ì¥ì€ saveasë¥¼ ì´ìš©í•˜ë©´ í¸...í•œê°€? ì•„ ëª¨ë¥´ê² ë‹¤ ë‚œ ê·€ì°®ì•„! ì, ë‚´ ì¼ì€ ì—¬ê¸°ê¹Œì§€!');
 end
 
 function exduplot(~,~,~)
-path=input('°æ·Î! ','s'); 
-name2=input('ÆÄÀÏ ÀÌ¸§Àº?' ,'s'); 
+path=input('ê²½ë¡œ! ','s'); 
+name2=input('íŒŒì¼ ì´ë¦„ì€?' ,'s'); 
 name=strcat('AJ',name2);
-graphname=input('±×·¡ÇÁ ÀÌ¸§Àº?' ,'s'); 
+graphname=input('ê·¸ë˜í”„ ì´ë¦„ì€?' ,'s'); 
 pathway=strcat(path,'\');
 filename=strcat(name,'.xlsx');
-disp('ÀÏ´Ü ±×·¡ÇÁ¸¦ ±×¸®·Á¸é Çà·ÄÀ» ¸ÕÀú ¸¸µé¾î¾ß ÇØ. ¹üÀ§¸¸ ÀÔ·ÂÇØÁÖ¸é ¾Ë¾Æ¼­ ÁıÀ»°Ô.');
-    shx1=input('°¢ ÃàÀÇ ½ÃÀÛÁ¡Àº? ','s'); %¼ıÀÚ¸¸ ½á... 
-    shx2=input('°¢ ÃàÀÇ ³¡ºÎºĞÀº? ','s'); 
+disp('ì¼ë‹¨ ê·¸ë˜í”„ë¥¼ ê·¸ë¦¬ë ¤ë©´ í–‰ë ¬ì„ ë¨¼ì € ë§Œë“¤ì–´ì•¼ í•´. ë²”ìœ„ë§Œ ì…ë ¥í•´ì£¼ë©´ ì•Œì•„ì„œ ì§‘ì„ê²Œ.');
+    shx1=input('ê° ì¶•ì˜ ì‹œì‘ì ì€? ','s'); %ìˆ«ìë§Œ ì¨... 
+    shx2=input('ê° ì¶•ì˜ ëë¶€ë¶„ì€? ','s'); 
         sheetX=strcat('A',shx1,':','A',shx2);
         sheetY=strcat('B',shx1,':','B',shx2);
         sheetY2=strcat('C',shx1,':','C',shx2);
@@ -40,14 +41,14 @@ legend('CTCGC','CCCGC');
 end
 
 function extriplot(~,~,~)
-path=input('°æ·Î! ','s'); 
-name=input('ÆÄÀÏ ÀÌ¸§Àº?' ,'s'); 
-graphname=input('±×·¡ÇÁ ÀÌ¸§Àº?' ,'s'); 
+path=input('ê²½ë¡œ! ','s'); 
+name=input('íŒŒì¼ ì´ë¦„ì€?' ,'s'); 
+graphname=input('ê·¸ë˜í”„ ì´ë¦„ì€?' ,'s'); 
 pathway=strcat(path,'\');
 filename=strcat(name,'.xlsx');
-disp('ÀÏ´Ü ±×·¡ÇÁ¸¦ ±×¸®·Á¸é Çà·ÄÀ» ¸ÕÀú ¸¸µé¾î¾ß ÇØ. ¹üÀ§¸¸ ÀÔ·ÂÇØÁÖ¸é ¾Ë¾Æ¼­ ÁıÀ»°Ô. È¤½Ã µÑ ´Ù ±×¸®´Â°Å¸é ¹¹... ¾Ë°ÚÁö? ');
-    shx1=input('°¢ ÃàÀÇ ½ÃÀÛÁ¡Àº? ','s'); %¼ıÀÚ¸¸ ½á... 
-    shx2=input('°¢ ÃàÀÇ ³¡ºÎºĞÀº? ','s'); 
+disp('ì¼ë‹¨ ê·¸ë˜í”„ë¥¼ ê·¸ë¦¬ë ¤ë©´ í–‰ë ¬ì„ ë¨¼ì € ë§Œë“¤ì–´ì•¼ í•´. ë²”ìœ„ë§Œ ì…ë ¥í•´ì£¼ë©´ ì•Œì•„ì„œ ì§‘ì„ê²Œ. í˜¹ì‹œ ë‘˜ ë‹¤ ê·¸ë¦¬ëŠ”ê±°ë©´ ë­... ì•Œê² ì§€? ');
+    shx1=input('ê° ì¶•ì˜ ì‹œì‘ì ì€? ','s'); %ìˆ«ìë§Œ ì¨... 
+    shx2=input('ê° ì¶•ì˜ ëë¶€ë¶„ì€? ','s'); 
         sheetX=strcat('A',shx1,':','A',shx2);
         sheetY=strcat('B',shx1,':','B',shx2);
         sheetY2=strcat('C',shx1,':','C',shx2);
@@ -69,15 +70,15 @@ end
 function expentplot(~,~,~)
 global path name pathway filename shx1 shx2
 figure(1);
-path=input('°æ·Î! ','s'); 
-name=input('ÆÄÀÏ ÀÌ¸§Àº?' ,'s'); 
+path=input('ê²½ë¡œ! ','s'); 
+name=input('íŒŒì¼ ì´ë¦„ì€?' ,'s'); 
 name2=strcat('AJ',name);
-graphname=input('±×·¡ÇÁ ÀÌ¸§Àº?' ,'s'); 
+graphname=input('ê·¸ë˜í”„ ì´ë¦„ì€?' ,'s'); 
 pathway=strcat(path,'\');
 filename=strcat(name,'.xlsx');
-disp('ÀÏ´Ü ±×·¡ÇÁ¸¦ ±×¸®·Á¸é Çà·ÄÀ» ¸ÕÀú ¸¸µé¾î¾ß ÇØ. ¹üÀ§¸¸ ÀÔ·ÂÇØÁÖ¸é ¾Ë¾Æ¼­ ÁıÀ»°Ô.');
-    shx1=input('°¢ ÃàÀÇ ½ÃÀÛÁ¡Àº? ','s'); %¼ıÀÚ¸¸ ½á... 
-    shx2=input('°¢ ÃàÀÇ ³¡ºÎºĞÀº? ','s'); 
+disp('ì¼ë‹¨ ê·¸ë˜í”„ë¥¼ ê·¸ë¦¬ë ¤ë©´ í–‰ë ¬ì„ ë¨¼ì € ë§Œë“¤ì–´ì•¼ í•´. ë²”ìœ„ë§Œ ì…ë ¥í•´ì£¼ë©´ ì•Œì•„ì„œ ì§‘ì„ê²Œ.');
+    shx1=input('ê° ì¶•ì˜ ì‹œì‘ì ì€? ','s'); %ìˆ«ìë§Œ ì¨... 
+    shx2=input('ê° ì¶•ì˜ ëë¶€ë¶„ì€? ','s'); 
         sheetX=strcat('A',shx1,':','A',shx2);
         sheetY=strcat('B',shx1,':','B',shx2);
         sheetY2=strcat('C',shx1,':','C',shx2);
@@ -95,7 +96,7 @@ legend('CTCGC','CCCGC');
 figure(2);
 path2=path;
 name3=name;
-graphname2=input('±×·¡ÇÁ ÀÌ¸§Àº?' ,'s'); 
+graphname2=input('ê·¸ë˜í”„ ì´ë¦„ì€?' ,'s'); 
 pathway2=pathway;
 filename2=filename;
         sheetZ=strcat('A',shx1,':','A',shx2);

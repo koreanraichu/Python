@@ -1,147 +1,147 @@
 function cycletimer(~)
-%ÇÏ ³ª·¹±â ¾ğÁ¨°¡ ÀÌ°Å ´Ù ÇÕÄ¥²¿¾ß ¤·¤·%
-disp('¾ÈÁ¤È­ ³¡³ª°í ÁøÇàÁßÀÎ°Å?');
-disp('ÁÁ¾Æ ÁÁ¾Æ. ±×·³ ½½½½ »ùÇÃ ÁØºñ¸¦ ÇØ µÎ´Â °Ô ¾î¶§?');
-disp('¹öÆÛ ¸Â°Ô °¡Á®¿Ô´ÂÁö Ã¼Å©ÇÏ°í ºÎÁ·ÇÑ ½Ã¾àµµ Ã¼Å©ÇØ¾ßÁö ½ÇÇè¿¡ ÁöÀåÀÌ ¾ø¾î.');
-disp('´Ù È®ÀÎµÈ °Í °°À¸¸é ½½½½ ·Îµù ÁØºñÇØµµ µÉ °Í °°¾Æ. ');
-disp('È¤½Ã calibrationÀÌ ¾È µÆ´Ù¸é ÀÌ ÇÔ¼ö´Â ½ÇÇàÇÏÁö ¸¶. cavitation »ı°Ü.');
-ST=input('½ÃÀÛÇÒ ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+%í•˜ ë‚˜ë ˆê¸° ì–¸ì  ê°€ ì´ê±° ë‹¤ í•©ì¹ ê¼¬ì•¼ ã…‡ã…‡% 
+disp('ì•ˆì •í™” ëë‚˜ê³  ì§„í–‰ì¤‘ì¸ê±°?');
+disp('ì¢‹ì•„ ì¢‹ì•„. ê·¸ëŸ¼ ìŠ¬ìŠ¬ ìƒ˜í”Œ ì¤€ë¹„ë¥¼ í•´ ë‘ëŠ” ê²Œ ì–´ë•Œ?');
+disp('ë²„í¼ ë§ê²Œ ê°€ì ¸ì™”ëŠ”ì§€ ì²´í¬í•˜ê³  ë¶€ì¡±í•œ ì‹œì•½ë„ ì²´í¬í•´ì•¼ì§€ ì‹¤í—˜ì— ì§€ì¥ì´ ì—†ì–´.');
+disp('ë‹¤ í™•ì¸ëœ ê²ƒ ê°™ìœ¼ë©´ ìŠ¬ìŠ¬ ë¡œë”© ì¤€ë¹„í•´ë„ ë  ê²ƒ ê°™ì•„. ');
+disp('í˜¹ì‹œ calibrationì´ ì•ˆ ëë‹¤ë©´ ì´ í•¨ìˆ˜ëŠ” ì‹¤í–‰í•˜ì§€ ë§ˆ. cavitation ìƒê²¨.');
+ST=input('ì‹œì‘í•  ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1200); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1200); 
         start(t) 
 
         stat=true; 
         a=0;
         while(stat==true) 
             a=a+1;
-          fprintf('%sÃÊ \n', num2str(a))
+          fprintf('%sì´ˆ \n', num2str(a))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
     pause(1);
-    disp('ÀÌ¹øÀÌ Ã¹ ¹øÂ° cycleÀÌÁö?');
-    ST=input('washing ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+    disp('ì´ë²ˆì´ ì²« ë²ˆì§¸ cycleì´ì§€?');
+    ST=input('washing ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1800); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1800); 
         start(t) 
 
         stat=true; 
         g=0;
         while(stat==true) 
             g=g+1;
-          fprintf('%sÃÊ \n', num2str(g))
+          fprintf('%sì´ˆ \n', num2str(g))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
         pause(1);
-    disp('ÀÌÁ¦ µÎ ¹øÂ° cycleÀÌÁö?');
-    ST=input('ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+    disp('ì´ì œ ë‘ ë²ˆì§¸ cycleì´ì§€?');
+    ST=input('ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1200); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1200); 
         start(t) 
 
         stat=true; 
         b=0;
         while(stat==true) 
             b=b+1
-          fprintf('%sÃÊ \n', num2str(b))
+          fprintf('%sì´ˆ \n', num2str(b))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
         pause(1);
-    disp('¿ÀÈ£. ¹ú½á µÎ ¹ø¤Š washingÀÌ±¸³ª. ');
-    ST=input('washing ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+    disp('ì˜¤í˜¸. ë²Œì¨ ë‘ ë²ˆÂŠ washingì´êµ¬ë‚˜. ');
+    ST=input('washing ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1800); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1800); 
         start(t) 
 
         stat=true; 
          c=0;
         while(stat==true) 
             c=c+1
-          fprintf('%sÃÊ \n', num2str(c))
+          fprintf('%sì´ˆ \n', num2str(c))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
             pause(1);
-    disp('ÁÁ¾Æ ÁÁ¾Æ, ÀÌÁ¦ ¸¶Áö¸·?');
-    disp('buffer ±³Ã¼°¡ ³¡³ª°í ¾ÈÁ¤È­ÇÏ´Â µ¥ ½Ã°£ÀÌ °É¸±°Å¾ß. ¾ÈÁ¤È­°¡ ´Ù µÅ¸é Á¹¾Æ¿Àµµ·Ï ÇØ.');
+    disp('ì¢‹ì•„ ì¢‹ì•„, ì´ì œ ë§ˆì§€ë§‰?');
+    disp('buffer êµì²´ê°€ ëë‚˜ê³  ì•ˆì •í™”í•˜ëŠ” ë° ì‹œê°„ì´ ê±¸ë¦´ê±°ì•¼. ì•ˆì •í™”ê°€ ë‹¤ ë¼ë©´ ì¡¸ì•„ì˜¤ë„ë¡ í•´.');
     pause(10)
-    ST=input('ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+    ST=input('ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1200); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1200); 
         start(t) 
 
         stat=true; 
         d=0;
         while(stat==true) 
             d=d+1;
-          fprintf('%sÃÊ \n', num2str(d))
+          fprintf('%sì´ˆ \n', num2str(d))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
         pause(1);
-    disp('¸¶Áö¸· washingÀÌ±¸³ª. ');
-    ST=input('washing ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+    disp('ë§ˆì§€ë§‰ washingì´êµ¬ë‚˜. ');
+    ST=input('washing ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1800); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1800); 
         start(t) 
 
         stat=true; 
         e=0;
         while(stat==true) 
             e=e+1;
-          fprintf('%sÃÊ \n', num2str(e))
+          fprintf('%sì´ˆ \n', num2str(e))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
-    disp('¼ö°íÇß¾î! ÀÌÁ¦ DW·Î washing¸¸ÇÏ¸é ³¡ÀÌ¾ß~ À¯¼ÓÀº 100ul/mÀ¸·Î ¼³Á¤ÇØÁà.');
+    disp('ìˆ˜ê³ í–ˆì–´! ì´ì œ DWë¡œ washingë§Œí•˜ë©´ ëì´ì•¼~ ìœ ì†ì€ 100ul/mìœ¼ë¡œ ì„¤ì •í•´ì¤˜.');
     pause(10);
-        ST=input('washing ÁØºñ°¡ µÅ¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+        ST=input('washing ì¤€ë¹„ê°€ ë¼ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',1800); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',1800); 
         start(t) 
 
         stat=true; 
         f=0;
         while(stat==true) 
             f=f+1;
-          fprintf('%sÃÊ \n', num2str(f))
+          fprintf('%sì´ˆ \n', num2str(f))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end

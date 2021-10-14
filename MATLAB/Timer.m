@@ -1,11 +1,11 @@
 function Timer(~)
-%inputÀÇ ¼ö´Â °³¹ßÇÏ¸é¼­ ¹Ù²ğ ¿¹Á¤ÀÌ±ä ÇÑµ¥... Å¸ÀÌ¸Ó ¸ØÃß´Â ¹ı ¾Æ´Â »ç¶÷?%
-disp('YO!! ÀÌ¹ø¿¡´Â Å¸ÀÌ¸ÓÁö·Õ!');
-disp('¾Æ ¹°·Ğ ½ÃÇèÆÇÀÌ¶ó;; Á¤½ÄÀ¸·Î °³¹ßµÇ±â±îÁö´Â ¿À·¡ °É¸±°Å¾ß.');
-disp('±×·¡¼­ ÀÌ¹ø¿¡´Â °£´ÜÈ÷ »ùÇÃ Ã³¸®¿¡ ¼Ò¿äµÇ´Â ½Ã°£¸¸ countingÇÏµµ·Ï ÄÚµùÇß¾î!');
-ST=input('sampleÀ» ³Ö°í ³ª¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
+%inputì˜ ìˆ˜ëŠ” ê°œë°œí•˜ë©´ì„œ ë°”ë€” ì˜ˆì •ì´ê¸´ í•œë°... íƒ€ì´ë¨¸ ë©ˆì¶”ëŠ” ë²• ì•„ëŠ” ì‚¬ëŒ?% 
+disp('YO!! ì´ë²ˆì—ëŠ” íƒ€ì´ë¨¸ì§€ë¡±!');
+disp('ì•„ ë¬¼ë¡  ì‹œí—˜íŒì´ë¼;; ì •ì‹ìœ¼ë¡œ ê°œë°œë˜ê¸°ê¹Œì§€ëŠ” ì˜¤ë˜ ê±¸ë¦´ê±°ì•¼.');
+disp('ê·¸ë˜ì„œ ì´ë²ˆì—ëŠ” ê°„ë‹¨íˆ ìƒ˜í”Œ ì²˜ë¦¬ì— ì†Œìš”ë˜ëŠ” ì‹œê°„ë§Œ countingí•˜ë„ë¡ ì½”ë”©í–ˆì–´!');
+ST=input('sampleì„ ë„£ê³  ë‚˜ë©´ 1ì„ ì…ë ¥í•´ì¤˜! 1ë§Œì´ì•¼! ê¸€ì ì•ˆë¼!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',61); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',61); 
         start(t) 
 
         stat=true;
@@ -20,22 +20,22 @@ ST=input('sampleÀ» ³Ö°í ³ª¸é 1À» ÀÔ·ÂÇØÁà! 1¸¸ÀÌ¾ß! ±ÛÀÚ ¾ÈµÅ!');
                 a=a;
                 m=0;
             end
-          fprintf('%sºĞ ', num2str(m))
-          fprintf('%sÃÊ \n', num2str(a))
+          fprintf('%së¶„ ', num2str(m))
+          fprintf('%sì´ˆ \n', num2str(a))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end
-    %»ùÇÃ ¿­Ã³¸® ½Ã°£ ¤·¤·%
- disp('sample ²¨³¾ ½Ã°£ÀÌ¾ß!');
- disp('¾óÀ½¿¡ ³Ö°í ¿Â °ÅÁö?!');
-ST=input('¸¸¾à ¾óÀ½¿¡ ³Ö¾ú´Ù¸é 1À» ÀÔ·ÂÇØÁà!');
+    %ìƒ˜í”Œ ì—´ì²˜ë¦¬ ì‹œê°„ ã…‡ã…‡%
+ disp('sample êº¼ë‚¼ ì‹œê°„ì´ì•¼!');
+ disp('ì–¼ìŒì— ë„£ê³  ì˜¨ ê±°ì§€?!');
+ST=input('ë§Œì•½ ì–¼ìŒì— ë„£ì—ˆë‹¤ë©´ 1ì„ ì…ë ¥í•´ì¤˜!');
     if ST == 1 
-        t = timer('TimerFcn', 'stat=false; disp(''¶¯!'')','StartDelay',60); 
+        t = timer('TimerFcn', 'stat=false; disp(''ë•¡!'')','StartDelay',60); 
         start(t) 
 
         stat=true; 
@@ -49,13 +49,13 @@ ST=input('¸¸¾à ¾óÀ½¿¡ ³Ö¾ú´Ù¸é 1À» ÀÔ·ÂÇØÁà!');
                 b=b;
                 m=0;
             end
-          fprintf('%sºĞ ', num2str(m))
-          fprintf('%sÃÊ \n', num2str(b))
+          fprintf('%së¶„ ', num2str(m))
+          fprintf('%sì´ˆ \n', num2str(b))
           pause(1) 
         end 
         stop(t)
         delete(t) 
 
     else 
-        disp('¤Ñ¤Ñ+')
+        disp('ã…¡ã…¡+')
     end

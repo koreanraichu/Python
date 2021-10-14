@@ -1,12 +1,12 @@
 function exduplot(~,~,~)
-path=input('°æ·Î¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä. ','s'); 
-name=input('ÆÄÀÏ ÀÌ¸§Àº?' ,'s'); 
-graphname=input('±×·¡ÇÁ ÀÌ¸§Àº?' ,'s'); 
+path=input('ê²½ë¡œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”. ','s'); 
+name=input('íŒŒì¼ ì´ë¦„ì€?' ,'s'); 
+graphname=input('ê·¸ë˜í”„ ì´ë¦„ì€?' ,'s'); 
 pathway=strcat(path,'\');
 filename=strcat(name,'.xlsx');
-disp('ÀÏ´Ü ±×·¡ÇÁ¸¦ ±×¸®·Á¸é Çà·ÄÀ» ¸ÕÀú ¸¸µé¾î¾ß ÇØ. ¹üÀ§¸¸ ÀÔ·ÂÇØÁÖ¸é ¾Ë¾Æ¼­ ÁıÀ»°Ô.');
-    shx1=input('°¢ ÃàÀÇ ½ÃÀÛÁ¡Àº? ','s'); %¼ıÀÚ¸¸ ½á... 
-    shx2=input('°¢ ÃàÀÇ ³¡ºÎºĞÀº? ','s'); 
+disp('ì¼ë‹¨ ê·¸ë˜í”„ë¥¼ ê·¸ë¦¬ë ¤ë©´ í–‰ë ¬ì„ ë¨¼ì € ë§Œë“¤ì–´ì•¼ í•´. ë²”ìœ„ë§Œ ì…ë ¥í•´ì£¼ë©´ ì•Œì•„ì„œ ì§‘ì„ê²Œ.');
+    shx1=input('ê° ì¶•ì˜ ì‹œì‘ì ì€? ','s'); %ìˆ«ìë§Œ ì¨... 
+    shx2=input('ê° ì¶•ì˜ ëë¶€ë¶„ì€? ','s'); 
         sheetX=strcat('A',shx1,':','A',shx2);
         sheetY=strcat('B',shx1,':','B',shx2);
         sheetY2=strcat('C',shx1,':','C',shx2);
@@ -20,3 +20,4 @@ xlabel('Time(sec)');
 ylabel('Pix');
 title(strcat(graphname,'(AJ)'));
 legend('CTCGC','CCCGC');
+%ì´ê±° ëŒ€ì²´ ë­ í•˜ë ¤ê³  ë§Œë“ ê±°ëƒ ë‚˜ìì‹ %

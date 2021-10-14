@@ -1,18 +1,18 @@
 function FAratio(~,~,~,~)
-disp('¼ø¼øÈ÷ ¹¯´Â ¸»¿¡ ´ë´äÇÑ´Ù¸é ¾ó¸¶µçÁö ±¸ÇØÁÖ°Ú¾î!');
-V=input('total volumeÀº ¾ó¸¶?');
-D=input('dilution factor´Â? Èñ¼® ¹è¼ö ÀÔ·ÂÇÏ¸é µÅ.');
-FA=input('formamide´Â ¸î %?');
-S=input('buffer´Â ¸î¹è ³óÃàµÈ°Å¾ß? ÀÌ¸§ ¾Õ¿¡ ¼ıÀÚ+x·Î µÅ ÀÖ´Âµ¥ ±× ¼ıÀÚ ¸»ÇÏ´Â°Å¾ß.');
-buffer=V/S; %ºÎÇÇ/³óÃàµÈ Á¤µµ
+disp('ìˆœìˆœíˆ ë¬»ëŠ” ë§ì— ëŒ€ë‹µí•œë‹¤ë©´ ì–¼ë§ˆë“ ì§€ êµ¬í•´ì£¼ê² ì–´!');
+V=input('total volumeì€ ì–¼ë§ˆ?');
+D=input('dilution factorëŠ”? í¬ì„ ë°°ìˆ˜ ì…ë ¥í•˜ë©´ ë¼.');
+FA=input('formamideëŠ” ëª‡ %?');
+S=input('bufferëŠ” ëª‡ë°° ë†ì¶•ëœê±°ì•¼? ì´ë¦„ ì•ì— ìˆ«ì+xë¡œ ë¼ ìˆëŠ”ë° ê·¸ ìˆ«ì ë§í•˜ëŠ”ê±°ì•¼.');
+buffer=V/S; %ë¶€í”¼/ë†ì¶•ëœ ì •ë„
     if D==0 
         DNA=0;
     else
         DNA=V*(1/D); 
     end
-%DNA ¿ª½Ã dilution factor¿¡ µû¶ó ¿ª¼ö·Î °öÇØÁØ´Ù. ...0ÀÏ‹š ¿¡·¯³ª¼­ ¼öÁ¤ ¤·¤· 
-FAmide=V*(FA/100); %¹éºĞÀ²ÀÎµ¥ ³ª´©±âÇØ¼­ »à»ì³µÀ½... 3_3 ÇöÀç ¼öÁ¤. 
-DW=V-buffer-DNA-FAmide; %½ÉÇÃÇÏÁ®? 
+%DNA ì—­ì‹œ dilution factorì— ë”°ë¼ ì—­ìˆ˜ë¡œ ê³±í•´ì¤€ë‹¤. ...0ì¼ë•Œ ì—ëŸ¬ë‚˜ì„œ ìˆ˜ì • ã…‡ã…‡ 
+FAmide=V*(FA/100); %ë°±ë¶„ìœ¨ì¸ë° ë‚˜ëˆ„ê¸°í•´ì„œ ì‚‘ì‚´ë‚¬ìŒ... 3_3 í˜„ì¬ ìˆ˜ì •. 
+DW=V-buffer-DNA-FAmide; %ì‹¬í”Œí•˜ì ¸? 
 fprintf('\n buffer %s \n', num2str(buffer));
 fprintf('\n DNA %s \n', num2str(DNA));
 fprintf('\n formamide %s \n', num2str(FAmide));

@@ -1,19 +1,18 @@
 function LB(~,~)
-% °³µå¸³µµ ³Ö¾îº¼±î... ¤Ñ¤Ñ
-disp('¾î¼­¿Í, ÀÌ ÇÁ·Î±×·¥Àº Ã³À½ÀÌÁö? ');
-disp('ÀÌ ÇÔ¼ö¸¦ ½ÇÇàÇÑ °É º¸´Ï, ³×°¡ ¸¸µé ¹èÁö°¡ LB¹èÁö°¡ ¸Â´Â°ÅÁö? ');
-disp('°³¹ßÀÚÀÇ ´É·Â¿¡µµ ÇÑ°è°¡ ÀÖ±â ¶§¹®¿¡ ¾Æ´Ï¶ó°í ÇØ¼­ ³»°¡ ÀÌ°É ´Ý°Å³ª ÇÏ´Â °Ç ºÒ°¡´ÉÇØ. ±×·³ ÀÌÁ¦ Áú¹®À» ÇØ º¼±î? ');
-vol=input('ÀÌ ¹èÁö´Â ¾ó¸¶³ª ¸¸µé°Å¾ß? ´ÜÀ§´Â ml·Î Àû¾îÁÖ±æ ¹Ù·¡. ');
-solid=input('±×·³ ÀÌ Áß¿¡¼­ °íÃ¼ ¹èÁö´Â ¾ó¸¶³ª ¸¸µé¾î? ´ÜÀ§´Â ml·Î Àû¾îÁÖ±æ ¹Ù·¡. ');
-% Áú¹® ´Ù ¹ÞÀºµí. 
-% ²ý
-fprintf('\n³Ö¾î¾ß ÇÒ Yeast excact´Â %s gÀÌ°í \n', num2str(5*(vol/1000)));
-fprintf('³Ö¾î¾ß ÇÒ TryptonÀº %s gÀÌ°í \n', num2str(10*(vol/1000)));
-fprintf('³Ö¾î¾ß ÇÒ NaClÀº %s gÀÌ¾ß. \n', num2str(10*(vol/1000)));
-fprintf('±×¸®°í °íÃ¼ ¹èÁö¿¡ ³Ö¾î¾ß ÇÒ bacto agar´Â %s gÀÌ¾ß. \n', num2str(15*(solid/1000)));
-disp('ÀÌÁ¦ ºñÄ¿, stirring bar, ¹èÁö ´ãÀ» ÇÃ¶ó½ºÅ© ´Ù 1Â÷ Áõ·ù¼ö·Î Çó±¸°í ')
-disp('½ºÆÄÃô¶ó´Â 3Â÷ Áõ·ù¼ö·Î Çó±Å¼­ ¹°±â ´Û¾ÆÁà. ');
-disp('Àú¿ïÀº ½Ã¾àÁö ¿Ã¸° ´ÙÀ½ ¿µÁ¡ ¸ÂÃß°í! ');
-disp('¾î¶ó, ¹Ì¸® ÇÏ°í ¿Ô´Ù°í? ´ë´ÜÇÑ°É? ');
-disp('ÀÌÁ¦ ½Ã¾àÀ» ÁØºñÇÑ ´ÙÀ½ ¸¸µé¸é µÅ. ')
-disp('bacto agar´Â Èñ°í Å« º´¿¡ »¡°£»ö ¶óº§, °ËÁ¤ ±Û¾¾¾ß. Àß º¸°í ½á. ')
+% ê°œë“œë¦½ë„ ë„£ì–´ë³¼ê¹Œ... ã…¡ã…¡
+disp('ì–´ì„œì™€, ì´ í”„ë¡œê·¸ëž¨ì€ ì²˜ìŒì´ì§€? ');
+disp('ì´ í•¨ìˆ˜ë¥¼ ì‹¤í–‰í•œ ê±¸ ë³´ë‹ˆ, ë„¤ê°€ ë§Œë“¤ ë°°ì§€ê°€ LBë°°ì§€ê°€ ë§žëŠ”ê±°ì§€? ');
+disp('ê°œë°œìžì˜ ëŠ¥ë ¥ì—ë„ í•œê³„ê°€ ìžˆê¸° ë•Œë¬¸ì— ì•„ë‹ˆë¼ê³  í•´ì„œ ë‚´ê°€ ì´ê±¸ ë‹«ê±°ë‚˜ í•˜ëŠ” ê±´ ë¶ˆê°€ëŠ¥í•´. ê·¸ëŸ¼ ì´ì œ ì§ˆë¬¸ì„ í•´ ë³¼ê¹Œ? ');
+vol=input('ì´ ë°°ì§€ëŠ” ì–¼ë§ˆë‚˜ ë§Œë“¤ê±°ì•¼? ë‹¨ìœ„ëŠ” mlë¡œ ì ì–´ì£¼ê¸¸ ë°”ëž˜. ');
+solid=input('ê·¸ëŸ¼ ì´ ì¤‘ì—ì„œ ê³ ì²´ ë°°ì§€ëŠ” ì–¼ë§ˆë‚˜ ë§Œë“¤ì–´? ë‹¨ìœ„ëŠ” mlë¡œ ì ì–´ì£¼ê¸¸ ë°”ëž˜. ');
+% ì§ˆë¬¸ ë‹¤ ë°›ì€ë“¯. 
+% ë—
+fprintf('\në„£ì–´ì•¼ í•  Yeast excactëŠ” %s gì´ê³  \n', num2str(5*(vol/1000)));
+fprintf('ë„£ì–´ì•¼ í•  Tryptonì€ %s gì´ê³  \n', num2str(10*(vol/1000)));
+fprintf('ë„£ì–´ì•¼ í•  NaClì€ %s gì´ì•¼. \n', num2str(10*(vol/1000)));
+fprintf('ê·¸ë¦¬ê³  ê³ ì²´ ë°°ì§€ì— ë„£ì–´ì•¼ í•  bacto agarëŠ” %s gì´ì•¼. \n', num2str(15*(solid/1000)));
+disp('ì´ì œ ë¹„ì»¤, stirring bar, ë°°ì§€ ë‹´ì„ í”Œë¼ìŠ¤í¬ ë‹¤ 1ì°¨ ì¦ë¥˜ìˆ˜ë¡œ í—¹êµ¬ê³  ')
+disp('ìŠ¤íŒŒì¸Œë¼ëŠ” 3ì°¨ ì¦ë¥˜ìˆ˜ë¡œ í—¹ê¶ˆì„œ ë¬¼ê¸° ë‹¦ì•„ì¤˜. ');
+disp('ì €ìš¸ì€ ì‹œì•½ì§€ ì˜¬ë¦° ë‹¤ìŒ ì˜ì  ë§žì¶”ê³ ! ');
+disp('ì–´ë¼, ë¯¸ë¦¬ í•˜ê³  ì™”ë‹¤ê³ ? ëŒ€ë‹¨í•œê±¸? ');
+disp('ì´ì œ ì‹œì•½ì„ ì¤€ë¹„í•œ ë‹¤ìŒ ë§Œë“¤ë©´ ë¼. ')

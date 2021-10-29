@@ -1,15 +1,24 @@
 <h1>Welcome to my repository!</h1>
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbDAz6p%2FbtriwydAMht%2FijGrEm2qcKsDkIgBoHoQH1%2Fimg.png" height="350">
-개발자는 아니지만 취미로 코딩을 하기 때문에 깃헙은 있습니다. 네. <br>
-돌아가는 그림이나 원하는 기능을 구현하기 위해 필요한 게 뭔지는 아는데 그걸 실제로 구현하는 방법은 모릅니다. <br>
-<br>
-써 본 언어는 대충 MATLAB, Python, R, VB, HTML, CSS에 JSP. 제이쿼리나 자바스크립트는 그냥 소스 가져다가 쓰는 수준입니다. <br>
-JSP나 CSS는 별로 안 올려서 분량은 없고, 현재 MATLAB이 50%, 파이썬이 대충 30%정도... 파이썬은 분량 쭉쭉 상승중입니다. <br>
-<br>
-그럴수밖에 없는게 매트랩이 일단 비싸고요... 옥타브 깔긴 했는데 아직 안써봤습니다... <br>
-예전에 한번 매트랩에서 만들었던 거 옥타브에서 돌렸다가 오류난 기억은 있네요. <br>
-<br>
-IDE는 자바는 이클립스, 파이썬은 파이참(간단한건 IDLE단에서 처리), R은 R studio 썼습니다. 깃헙에 올릴 때는 GiKraken 씁니다. <br> 
+<blockquote>취미로 개발하는 포켓몬 매니아인 생물학 전공자</blockquote>
+<h3>일단 해 본 것들</h3>
+<ul>
+  <li>VB(Visual basic)</li>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>JSP</li>
+  <li>MATLAB</li>
+  <li>Python</li>
+  <li>R</li>
+  <li>MySQL</li>
+</ul>
+<h3>주 사용 IDE</h3>
+<ul>
+  <li>Eclipse(JSP, HTML, CSS)</li>
+  <li>Workbench(MySQL)</li>
+  <li>IDLE, PyCharm(Python)</li>
+  <li>R sturio(R)</li>
+</ul>
 <h2>About contributor</h2>
 <blockquote>적당히 좀 합시다. 온갖가지 경우의 수는 다 따지고 앉아있네... DNA도 그 정도로 꼬이면 TOPO isomerase가 풀어버립니다. </blockquote>
 신중할때는 나름 신중한 성격이지만 보통은 바로바로 결정하는 편입니다. <br>
@@ -37,6 +46,7 @@ IDE는 자바는 이클립스, 파이썬은 파이참(간단한건 IDLE단에서
 결국 해내긴 해냈는데 진짜 힘들었습니다. <br>
 <br>
 ...근데 오늘 matplot 쓰면서 scatter plot 그린게 거의 그거급이었지 아마. 
+<h1>Links</h1>
 <a href="https://koreanraichu.sfuhost.com/">Wordpress</a> Language: KOR<br>
 <a href="https://medium.com/@koreanraichu">Medium</a> Language: KOR<br>
 <a href="https://www.deviantart.com/blackholekun">Devianart</a> Language: ENG<br>

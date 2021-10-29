@@ -11,6 +11,12 @@ JSP나 CSS는 별로 안 올려서 분량은 없고, 현재 MATLAB이 50%, 파�
 <br>
 IDE는 자바는 이클립스, 파이썬은 파이참(간단한건 IDLE단에서 처리), R은 R studio 썼습니다. 깃헙에 올릴 때는 GiKraken 씁니다. <br> 
 <h2>About contributor</h2>
+<blockquote>적당히 좀 합시다. 온갖가지 경우의 수는 다 따지고 앉아있네... DNA도 그 정도로 꼬이면 TOPO isomerase가 풀어버립니다. </blockquote>
+신중할때는 나름 신중한 성격이지만 보통은 바로바로 결정하는 편입니다. <br>
+에라 모르겠다 하고 기도메타에 맡겨버리는 성격은 아니지만 그렇다고 오래 생각하지도 않습니다. <br>
+너무 꼬아서 생각하면 또 그것때문에 손해보는 게 많거든요. <br>
+<br>
+문제가 안 풀리면 잠깐 머리 좀 식히면서 뒤로 한 발 물러나서 전체를 보는 타입입니다. 
 <h3>Q1. 코딩에 입문하게 된 계기는?</h3>
 <b>A1. </b>고등학생때 직업탐구 영역 공부하면서 VB(비주얼 베이직) 배웠습니다. HTML은 중학생때 했었고... <br>
 뭐 수능시험장에서 코딩테스트 칠 것도 아니고, 그때는 그냥 코드 어떤건지만 알려주는 정도였습니다. <br>
@@ -31,12 +37,6 @@ IDE는 자바는 이클립스, 파이썬은 파이참(간단한건 IDLE단에서
 결국 해내긴 해냈는데 진짜 힘들었습니다. <br>
 <br>
 ...근데 오늘 matplot 쓰면서 scatter plot 그린게 거의 그거급이었지 아마. 
-<h3>Q4. 본인은 밖으로 나가는 걸 좋아하는 성격인지, 집순이인지? </h3>
-<b>A4. </b>후자요. 포켓몬GO 이벤트 아니면 잘 안 나갑니다. <br>
-자가격리때문에 시설에 있다는 얘기 듣고 대부분 아이고 못나가서 어떡해 하시는데 저는 집에서도 제발 좀 나가라고 하는 수준이라 데미지 없었습니다. 
-<h3></h3>
-<b></b>
-<h1>Other links</h1>
 <a href="https://koreanraichu.sfuhost.com/">Wordpress</a> Language: KOR<br>
 <a href="https://medium.com/@koreanraichu">Medium</a> Language: KOR<br>
 <a href="https://www.deviantart.com/blackholekun">Devianart</a> Language: ENG<br>

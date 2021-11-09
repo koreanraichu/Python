@@ -1,0 +1,200 @@
+LOCUS       NM_180778               1897 bp    mRNA    linear   PLN 14-FEB-2019
+DEFINITION  Arabidopsis thaliana lysine histidine transporter 1 (LHT1), mRNA.
+ACCESSION   NM_180778
+VERSION     NM_180778.4
+DBLINK      BioProject: PRJNA116
+            BioSample: SAMN03081427
+KEYWORDS    RefSeq.
+SOURCE      Arabidopsis thaliana (thale cress)
+  ORGANISM  Arabidopsis thaliana
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliopsida; eudicotyledons; Gunneridae;
+            Pentapetalae; rosids; malvids; Brassicales; Brassicaceae;
+            Camelineae; Arabidopsis.
+REFERENCE   1  (bases 1 to 1897)
+  AUTHORS   Tabata,S., Kaneko,T., Nakamura,Y., Kotani,H., Kato,T., Asamizu,E.,
+            Miyajima,N., Sasamoto,S., Kimura,T., Hosouchi,T., Kawashima,K.,
+            Kohara,M., Matsumoto,M., Matsuno,A., Muraki,A., Nakayama,S.,
+            Nakazaki,N., Naruo,K., Okumura,S., Shinpo,S., Takeuchi,C., Wada,T.,
+            Watanabe,A., Yamada,M., Yasuda,M., Sato,S., de la Bastide,M.,
+            Huang,E., Spiegel,L., Gnoj,L., O'Shaughnessy,A., Preston,R.,
+            Habermann,K., Murray,J., Johnson,D., Rohlfing,T., Nelson,J.,
+            Stoneking,T., Pepin,K., Spieth,J., Sekhon,M., Armstrong,J.,
+            Becker,M., Belter,E., Cordum,H., Cordes,M., Courtney,L.,
+            Courtney,W., Dante,M., Du,H., Edwards,J., Fryman,J., Haakensen,B.,
+            Lamar,E., Latreille,P., Leonard,S., Meyer,R., Mulvaney,E.,
+            Ozersky,P., Riley,A., Strowmatt,C., Wagner-McPherson,C., Wollam,A.,
+            Yoakum,M., Bell,M., Dedhia,N., Parnell,L., Shah,R., Rodriguez,M.,
+            See,L.H., Vil,D., Baker,J., Kirchoff,K., Toth,K., King,L.,
+            Bahret,A., Miller,B., Marra,M., Martienssen,R., McCombie,W.R.,
+            Wilson,R.K., Murphy,G., Bancroft,I., Volckaert,G., Wambutt,R.,
+            Dusterhoft,A., Stiekema,W., Pohl,T., Entian,K.D., Terryn,N.,
+            Hartley,N., Bent,E., Johnson,S., Langham,S.A., McCullagh,B.,
+            Robben,J., Grymonprez,B., Zimmermann,W., Ramsperger,U., Wedler,H.,
+            Balke,K., Wedler,E., Peters,S., van Staveren,M., Dirkse,W.,
+            Mooijman,P., Lankhorst,R.K., Weitzenegger,T., Bothe,G., Rose,M.,
+            Hauf,J., Berneiser,S., Hempel,S., Feldpausch,M., Lamberth,S.,
+            Villarroel,R., Gielen,J., Ardiles,W., Bents,O., Lemcke,K.,
+            Kolesov,G., Mayer,K., Rudd,S., Schoof,H., Schueller,C.,
+            Zaccaria,P., Mewes,H.W., Bevan,M. and Fransz,P.
+  CONSRTM   Kazusa DNA Research Institute; Cold Spring Harbor and Washington
+            University in St Louis Sequencing Consortium; European Union
+            Arabidopsis Genome Sequencing Consortium
+  TITLE     Sequence and analysis of chromosome 5 of the plant Arabidopsis
+            thaliana
+  JOURNAL   Nature 408 (6814), 823-826 (2000)
+   PUBMED   11130714
+REFERENCE   2  (bases 1 to 1897)
+  CONSRTM   NCBI Genome Project
+  TITLE     Direct Submission
+  JOURNAL   Submitted (14-FEB-2019) National Center for Biotechnology
+            Information, NIH, Bethesda, MD 20894, USA
+REFERENCE   3  (bases 1 to 1897)
+  AUTHORS   Krishnakumar,V., Cheng,C.-Y., Chan,A.P., Schobel,S., Kim,M.,
+            Ferlanti,E.S., Belyaeva,I., Rosen,B.D., Micklem,G., Miller,J.R.,
+            Vaughn,M. and Town,C.D.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (17-MAY-2016) Plant Genomics, J. Craig Venter Institute,
+            9704 Medical Center Dr, Rockville, MD 20850, USA
+  REMARK    Protein update by submitter
+REFERENCE   4  (bases 1 to 1897)
+  AUTHORS   Swarbreck,D., Lamesch,P., Wilks,C. and Huala,E.
+  CONSRTM   TAIR
+  TITLE     Direct Submission
+  JOURNAL   Submitted (18-FEB-2011) Department of Plant Biology, Carnegie
+            Institution, 260 Panama Street, Stanford, CA, USA
+COMMENT     REVIEWED REFSEQ: This record has been curated by TAIR and Araport.
+            This record is derived from an annotated genomic sequence
+            (NC_003076).
+            On Sep 12, 2016 this sequence version replaced NM_180778.3.
+FEATURES             Location/Qualifiers
+     source          1..1897
+                     /organism="Arabidopsis thaliana"
+                     /mol_type="mRNA"
+                     /db_xref="taxon:3702"
+                     /chromosome="5"
+                     /ecotype="Columbia"
+     gene            1..1897
+                     /gene="LHT1"
+                     /locus_tag="AT5G40780"
+                     /gene_synonym="K1B16.3; K1B16_3; LYSINE AND HISTIDINE
+                     SPECIFIC TRANSPORTER; lysine histidine transporter 1"
+                     /note="Encodes LHT1 (lysine histidine transporter), a
+                     high-affinity transporter for cellular amino acid uptake
+                     in both root epidermis and leaf mesophyll."
+                     /db_xref="Araport:AT5G40780"
+                     /db_xref="GeneID:834078"
+                     /db_xref="TAIR:AT5G40780"
+     CDS             257..1597
+                     /gene="LHT1"
+                     /locus_tag="AT5G40780"
+                     /gene_synonym="K1B16.3; K1B16_3; LYSINE AND HISTIDINE
+                     SPECIFIC TRANSPORTER; lysine histidine transporter 1"
+                     /inference="Similar to RNA sequence,
+                     EST:INSD:BP599520.1,INSD:EL159617.1,INSD:EG485280.1,
+                     INSD:ES107744.1,INSD:EL150165.1,INSD:EL303728.1,
+                     INSD:ES091111.1,INSD:EH813890.1,INSD:BP780657.1,
+                     INSD:DR255401.1,INSD:DR382629.1,INSD:DR255396.1,
+                     INSD:ES001685.1,INSD:BP611825.1,INSD:EL247953.1,
+                     INSD:EL130166.1,INSD:EL115204.1,INSD:EH985460.1,
+                     INSD:EL006644.1,INSD:EH843205.1,INSD:EL077618.1,
+                     INSD:AV536936.1,INSD:EH907209.1,INSD:EL060251.1,
+                     INSD:EH886092.1,INSD:EL246255.1,INSD:EG446586.1,
+                     INSD:EL146353.1,INSD:EH900045.1,INSD:ES037679.1,
+                     INSD:DR255395.1,INSD:EG485279.1,INSD:BP607737.1,
+                     INSD:AV551550.1,INSD:CB074953.1,INSD:DR255398.1,
+                     INSD:EG501827.1,INSD:EL055118.1,INSD:AV802665.1,
+                     INSD:EL198626.1,INSD:EH957006.1,INSD:EL248351.1,
+                     INSD:EH849920.1,INSD:DR255397.1,INSD:EH935280.1,
+                     INSD:EL179421.1,INSD:EL012585.1,INSD:EL158831.1,
+                     INSD:EL269128.1,INSD:EL306158.1,INSD:EL049139.1,
+                     INSD:EH987545.1,INSD:AV805824.1,INSD:EL210374.1,
+                     INSD:AV539154.1,INSD:F13954.1,INSD:AV828749.1,
+                     INSD:EL222810.1,INSD:EH984816.1,INSD:AV813700.1,
+                     INSD:BP571242.1,INSD:EL127401.1,INSD:EL282777.1,
+                     INSD:EL050211.1,INSD:EH908695.1,INSD:DR255400.1,
+                     INSD:EH992566.1,INSD:BP604671.1,INSD:DR255394.1,
+                     INSD:EL137977.1,INSD:EL243540.1,INSD:EL271579.1,
+                     INSD:EL248654.1,INSD:BP620268.1,INSD:BP860913.1,
+                     INSD:EL018567.1,INSD:AV827269.1,INSD:EL040616.1,
+                     INSD:T45683.1,INSD:ES087482.1,INSD:AV797714.1,
+                     INSD:EH924336.1,INSD:EL277802.1,INSD:EL226037.1,
+                     INSD:EH810586.1,INSD:EH797000.1,INSD:EH910218.1,
+                     INSD:DR373755.1,INSD:AV807991.1,INSD:AV539228.1,
+                     INSD:AV546158.1,INSD:EH830298.1,INSD:BP588843.1,
+                     INSD:EL061492.1,INSD:EL075251.1,INSD:EL111880.1,
+                     INSD:EH987671.1,INSD:EH853569.1,INSD:EH799104.1,
+                     INSD:EH865586.1,INSD:EL246660.1,INSD:EH961601.1,
+                     INSD:EL074868.1,INSD:EL020388.1,INSD:EH845628.1,
+                     INSD:BP779141.1,INSD:EL276917.1,INSD:BP615574.1,
+                     INSD:BP853872.1,INSD:BP573708.1,INSD:EH958342.1,
+                     INSD:EG485368.1,INSD:AV816129.1,INSD:EH986370.1,
+                     INSD:EH968021.1,INSD:T13994.1,INSD:EL108552.1,
+                     INSD:EH948406.1,INSD:BE662843.1,INSD:DR255399.1,
+                     INSD:EL325910.1,INSD:EL014210.1"
+                     /inference="similar to RNA sequence,
+                     mRNA:INSD:BX829887.1,INSD:BX829958.1,INSD:AF367281.1,
+                     INSD:AY133550.1,INSD:BX832947.1,INSD:U39782.1,
+                     INSD:BX830230.1"
+                     /note="lysine histidine transporter 1 (LHT1); FUNCTIONS
+                     IN: amino acid transmembrane transporter activity;
+                     INVOLVED IN: amino acid transport, response to karrikin,
+                     amino acid import; LOCATED IN: plasma membrane, membrane;
+                     EXPRESSED IN: 22 plant structures; EXPRESSED DURING: 11
+                     growth stages; CONTAINS InterPro DOMAIN/s: Amino acid
+                     transporter, transmembrane (InterPro:IPR013057); BEST
+                     Arabidopsis thaliana protein match is: Transmembrane amino
+                     acid transporter family protein (TAIR:AT1G48640.1); Has
+                     4138 Blast hits to 4131 proteins in 350 species: Archae -
+                     7; Bacteria - 208; Metazoa - 1178; Fungi - 615; Plants -
+                     1652; Viruses - 0; Other Eukaryotes - 478 (source: NCBI
+                     BLink)."
+                     /codon_start=1
+                     /product="lysine histidine transporter 1"
+                     /protein_id="NP_851109.1"
+                     /db_xref="GeneID:834078"
+                     /db_xref="TAIR:AT5G40780"
+                     /db_xref="Araport:AT5G40780"
+                     /translation="MVAQAPHDDHQDDEKLAAARQKEIEDWLPITSSRNAKWWYSAFH
+                     NVTAMVGAGVLGLPYAMSQLGWGPGIAVLVLSWVITLYTLWQMVEMHEMVPGKRFDRY
+                     HELGQHAFGEKLGLYIVVPQQLIVEIGVCIVYMVTGGKSLKKFHELVCDDCKPIKLTY
+                     FIMIFASVHFVLSHLPNFNSISGVSLAAAVMSLSYSTIAWASSASKGVQEDVQYGYKA
+                     KTTAGTVFNFFSGLGDVAFAYAGHNVVLEIQATIPSTPEKPSKGPMWRGVIVAYIVVA
+                     LCYFPVALVGYYIFGNGVEDNILMSLKKPAWLIATANIFVVIHVIGSYQIYAMPVFDM
+                     METLLVKKLNFRPTTTLRFFVRNFYVAATMFVGMTFPFFGGLLAFFGGFAFAPTTYFL
+                     PCVIWLAIYKPKKYSLSWWANWVCIVFGLFLMVLSPIGGLRTIVIQAKGYKFYS"
+ORIGIN      
+        1 cataactctt gtgcccatct ccacaagtag tttgtgaagt caaacaaaaa cttccacttt
+       61 taaaattttc tcttatttct ttctctctca taagtcataa tattcaacta attaagtgca
+      121 tatatatacg atgtatcagt gcttataatc ttcatgagga gctttatata tttagcataa
+      181 tatctttcag aagtgtgagg ccttgttaat taagctcttc ttctctatct ctctctctcc
+      241 ctctcaacct ctcaccatgg tagctcaagc tcctcatgat gatcatcagg atgatgagaa
+      301 attagcagca gcgagacaaa aagagatcga agattggtta ccaattactt catcaagaaa
+      361 tgcaaagtgg tggtactctg cttttcacaa tgtcaccgcc atggtcggtg ccggagttct
+      421 tggactccct tacgccatgt ctcagctcgg atggggaccg ggaattgcag tgttggtttt
+      481 gtcatgggtc ataacactat acacattatg gcaaatggtg gaaatgcatg aaatggttcc
+      541 tggaaagcgt tttgatcgtt accatgagct cggacaacac gcgtttggag aaaaactcgg
+      601 tctttatatc gttgtgccgc aacaattgat cgttgaaatc ggtgtttgca tcgtttatat
+      661 ggtcactgga ggcaaatctt taaagaaatt tcatgagctt gtttgtgatg attgtaaacc
+      721 aatcaagctt acttatttca tcatgatctt tgcttcggtt cacttcgtcc tctctcatct
+      781 tcctaatttc aattccatct ccggcgtttc tcttgctgct gccgttatgt ctctcagcta
+      841 ctcaacaatc gcatgggcat catcagcaag caaaggtgtt caagaagacg ttcaatacgg
+      901 ttacaaagcg aaaacaacag ccggtacggt tttcaatttc ttcagcggtt taggtgatgt
+      961 ggcatttgct tacgcgggtc ataatgtggt ccttgagatc caagcaacta tcccttcaac
+     1021 gcctgagaaa ccctcaaaag gtcccatgtg gagaggagtc atcgttgctt acatcgtcgt
+     1081 agcgctctgt tatttccccg tggctctcgt tggatactac attttcggga acggagtcga
+     1141 agataatatt ctcatgtcac ttaagaaacc ggcgtggtta atcgccacgg cgaacatctt
+     1201 cgtcgtgatc catgtcattg gtagttacca gatatatgca atgccggtat ttgatatgat
+     1261 ggagacttta ttggtcaaga agctaaattt cagaccaacc acaactcttc ggttctttgt
+     1321 ccgtaatttc tacgttgctg caactatgtt tgttggtatg acgtttccgt tcttcggtgg
+     1381 gcttttggcg ttctttggtg gattcgcgtt tgccccaacc acatacttcc tcccttgcgt
+     1441 catttggtta gccatctaca aacccaagaa atacagcttg tcttggtggg ccaactgggt
+     1501 atgcatcgtg tttggtcttt tcttgatggt cctatcgcca attggagggc taaggacaat
+     1561 cgttattcaa gcaaaaggat acaagtttta ctcataaacg ctatgtaatt ccactaatta
+     1621 agaaacatat ctttatatta atatatgtgt gaagaagttt ttaagagatc aacacgagac
+     1681 atttatagaa gaatcaatgg tctggtctga atctaaatgt agcttttagg gtttgtattt
+     1741 tcgtgtgtgt tatatatatt atataaaaca ataatatttt gctcaaatag gttttcaaaa
+     1801 tgtttggttt tctgaggaga ttgattcttt gtgttctcaa gaaaagaata catagatgga
+     1861 tatcattcca acttccaagt tattactatt attatat
+//
+

@@ -47,7 +47,7 @@ record_len_array=np.array(record_len)
 # 배열화 성공(위에 빼 둔 시르트로 생성함)
 record_table=pd.DataFrame({"ID":record_id_array,"Length":record_len_array})
 record_table2=record_table.groupby('Length').count()
-record_table2=record_table2.sort_values('Length',ascending=0)
+record_table2=record_table2.sort_values('ID',ascending=0)
 print(record_table2.head(10))
 # 아 드디어 깔끔한 표가 나왔습니다!!!
 # 그리고 어쨌든 Top10 뽑았음

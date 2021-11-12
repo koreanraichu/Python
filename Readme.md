@@ -8,5 +8,23 @@
 <br>
 피드백은 환영합니다. <br>
 참고로 한국어를 선호하긴 하지만 영어 일본어도 가능합니다. 
+<h2>Repository 폴더 내에 든 파일들</h2>
+<ol>
+  <li>JSP</li>
+  <li>MATLAB</li>
+  <li>Others: 코딩 말고 다른 파일들이 들어있는 폴더입니다. 
+    <ol>
+      <li>FASTA</li>
+      <li>Genbank</li>
+      <li>stk(stockholm format)</li>
+    </ol>
+  </li>
+  <li>Python
+    <ol>
+      <li>Biopython: Biopython 하면서 코드 따라해본 것들은 여기 있습니다. (파일명에 뭐 했는지 대충 써있음)</li>
+      <li>Practice: 교육받으면서 따라했던 코드들이 있습니다. </li>
+    </ol>
+  </li>
+</ol>
 <h2>How to contact</h2>
 Mail: blackholekun@gmail.com(해외)/pokemonms@naver.com(국내)

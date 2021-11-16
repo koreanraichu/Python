@@ -14,6 +14,7 @@
   <li>MATLAB</li>
   <li>Others: 코딩 말고 다른 파일들이 들어있는 폴더입니다. 
     <ol>
+      <li>기타 파일들</li>
       <li>FASTA</li>
       <li>Genbank</li>
       <li>PDB file</li>

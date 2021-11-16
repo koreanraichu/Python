@@ -16,6 +16,7 @@
     <ol>
       <li>FASTA</li>
       <li>Genbank</li>
+      <li>PDB file</li>
       <li>stk(stockholm format)</li>
       <li>Text(기타 텍스트 파일)</li>
     </ol>

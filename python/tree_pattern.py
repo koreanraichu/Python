@@ -8,3 +8,14 @@ for i in a:
         else:
             print("★",end="")
     print(" ")
+
+a=list(range(16))
+for i in a:
+    for j in range(a[-1]-a[i]):
+        print(" ",end="")
+    for j in range(2*a[i]+1):
+        if i % 2 == 0:
+            print("♥️",end="")
+        else:
+            print(" ",end="")
+    print(" ")

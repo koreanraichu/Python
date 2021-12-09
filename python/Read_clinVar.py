@@ -32,7 +32,11 @@ Gene_df=pd.DataFrame({"Chromosome":Chr_series, "Gene":Gene_series,"CLNSIG":CLN_s
 Gene_df2=Gene_df.groupby(['Chromosome','CLNSIG']).count()
 # Groupby로 시원하게 묶어보자
 # 근데 이거 object라 정렬이 1, 2, 3, 4로 안된다...
+Gene_df3=Gene_df.groupby(['Gene','CLNSIG']).count()
+Gene_df3=Gene_df3.sort_values('Chromosome',ascending=0)
+print(Gene_df3.head(30))
+# 유전자 내에서 CLINSIC별로 가장 많은 걸 출력해주는 건 이거
 Gene_df3=Gene_df.groupby('Gene').count()
 Gene_df3=Gene_df3.sort_values('CLNSIG',ascending=0)
 print(Gene_df3.head(30))
-# 정렬하고 30개 뽑아보자
+# 그냥 유전자별로 Top30(CLINSIC 분류 상관없이) 출력해주는 건 이거

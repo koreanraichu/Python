@@ -2,9 +2,11 @@
 <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fq6t5V%2Fbtrfn4Po03H%2FqfYkooJVw4inAPIFGE6NR0%2Fimg.jpg" width="350">
 프로필에서 봤던 Readme는 여기서 온 게 아닙니다. 아예 readme용으로 Repository를 새로 만들었습니다. <br>
 <br>
-아직까지 MATLAB이 비중이 많은데 Python이 점점 치고 올라오고 있습니다. <br>
-본업은 개발쪽이 아닌지라 그렇게 자주 업데이트가 되거나 하지는 않습니다. <br>
-이 점 유념해주시길 바랍니다. <br>
+깃헙에 올라오지는 않지만, 일단 R도 하고는 있습니다. <br>
+파이썬과 달리 R은 터미널에서 불러서 바로바로 하는 편이라 뭐가 남는 건 없습니다. <br>
+이 와중에 Python이랑 Jupyter notebook 분리된 거 보게... <br>
+py file이랑 jupyter notebook이 확장자가 다르긴 하죠. 근데 언어는 파이썬 아닌가... <br>
+왜 나눠놨대... <br>
 <br>
 피드백은 환영합니다. <br>
 참고로 한국어를 선호하긴 하지만 영어 일본어도 가능합니다. 

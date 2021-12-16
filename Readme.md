@@ -4,7 +4,8 @@
 <br>
 깃헙에 올라오지는 않지만, 일단 R도 하고는 있습니다. <br>
 파이썬과 달리 R은 터미널에서 불러서 바로바로 하는 편이라 뭐가 남는 건 없습니다. <br>
-이 와중에 Python이랑 Jupyter notebook 분리된 거 보게... <br>
+<br>
+근데 이 와중에 Python이랑 Jupyter notebook 분리된 거 보게... <br>
 py file이랑 jupyter notebook이 확장자가 다르긴 하죠. 근데 언어는 파이썬 아닌가... <br>
 왜 나눠놨대... <br>
 <br>

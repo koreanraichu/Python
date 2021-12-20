@@ -19,10 +19,7 @@ for i in range(len(Gene_set)):
     Gene_values=Gene.count(Gene_value_list[i])
     Gene_count.append(Gene_values)
     Gene_dict[Gene_value_list[i]]=Gene_count[i]
-print(Gene_dict)
 # 실행하는데 정~말 오래 걸린다..
-print(sorted(Gene_dict.items()))
-print(sorted(Gene_dict.items(),key=lambda x:x[1]))
 # 이쪽도 정렬이 된다.
-for n in range(len(Gene_dict)):
-    print(sorted(Gene_dict.items(),key=lambda x:x[1])[n])
+for n in range(30):
+    print(sorted(Gene_dict.items(),key=lambda x:x[1],reverse=True)[n]) # 내림차순+Top30

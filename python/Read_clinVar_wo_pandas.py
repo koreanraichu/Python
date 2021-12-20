@@ -29,4 +29,4 @@ CLNSIG_dict_values=sorted(CLNSIG_dict.items(),key=lambda x:x[1])
 for n in range(len(CLNSIG_dict)):
     print(sorted(CLNSIG_dict.items())[n])
 # for문을 그대로 쓰면 딕셔너리의 Key가 문자열이기 때문에 오류가 난다.
-# 괄호 안을 sorted(CLNSIG_dict.items(),key=lambda x:x[1])로 바꾸면 Value(내림차순)로 정렬된 결과가 출력된다.
+# 괄호 안을 sorted(CLNSIG_dict.items(),key=lambda x:x[1])로 바꾸면 Value로 정렬된 결과가 출력된다.

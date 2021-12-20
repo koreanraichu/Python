@@ -1,28 +1,22 @@
 import vcf
 vcf_reader = vcf.Reader(open('/home/koreanraichu/clinvar_20211218.vcf', 'r'))
-# 그새 업데이트 된 거 실화입니다.
-# 심지어 한번 더 된 거 실화입니다. 12월 18일에 올라왔습니다.
-# dict_keys(['ALLELEID', 'CLNDISDB', 'CLNDN', 'CLNHGVS', 'CLNREVSTAT', 'CLNSIG', 'CLNVC', 'CLNVCSO', 'GENEINFO', 'MC', 'ORIGIN', 'RS'])
-# dict_values([1003021, ['MedGen:CN517202'], ['not_provided'], ['NC_000001.11:g.925952G>A'], ['criteria_provided', '_single_submitter'], ['Uncertain_significance'], 'single_nucleotide_variant', 'SO:0001483', 'SAMD11:148398', ['SO:0001583|missense_variant'], ['1'], ['1640863258']])
+# 12월 18일에 업그레이드 된 따끈따끈한 데이터 납시오!
 CLNSIG=[]
 for record in vcf_reader:
     Info_get=record.INFO.get('CLNSIG')
     if Info_get:
-        CLNSIG.append(str(Info_get[0])) # Tuple일 때 뽑아봤더니 (a,b) 구조더만...
+        CLNSIG.append(str(Info_get[0])) # Tuple일 때 뽑아봤더니 (a,b) 구조더만... raw data에서는 안그런데...?
     else:
         CLNSIG.append("No data")
 CLNSIG_set=set(CLNSIG) # set은 중복값을 없애주기 때문에 뭐가 있는지를 볼 수 있다. 일단은.
 CLNSIG_count=[]
 CLNSIG_values_list=list(CLNSIG_set)
+CLNSIG_dict={}
 print(len(CLNSIG_set)) # 67개씩이나 된다고?
 for i in range(len(CLNSIG_set)):
     count_values=CLNSIG.count(CLNSIG_values_list[i])
-    CLNSIG_count.append(count_values)
-# 일단 세 달라고는 했다.
-print(CLNSIG_count) # 왜 괴랄한 게 뜨나 했더니 언더바가 아니라 마침표를 찍었네.
-CLNSIG_dict={}
-for j in range(len(CLNSIG_count)):
-    CLNSIG_dict[CLNSIG_values_list[j]]=CLNSIG_count[j]
+    CLNSIG_count.append(count_values) # 일단 세 본다
+    CLNSIG_dict[CLNSIG_values_list[i]] = CLNSIG_count[i] # 딕셔너리화
 print(CLNSIG_dict)
 # 어? 이게 되네?
 print(sorted(CLNSIG_dict.items()))

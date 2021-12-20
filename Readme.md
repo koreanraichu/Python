@@ -36,4 +36,4 @@ py file이랑 jupyter notebook이 확장자가 다르긴 하죠. 근데 언어�
 </ol>
 <h2>How to contact</h2>
 Mail: blackholekun@gmail.com(해외)/pokemonms@naver.com(국내) <br>
-Discord Name: Lv. 32 라이츄two_hearts#5597/Discord ID: 320538255512698881
+Discord Name: Lv. 32 라이츄💕#5597/Discord ID: 320538255512698881

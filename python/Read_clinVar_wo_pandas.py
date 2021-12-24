@@ -1,4 +1,5 @@
 import vcf
+import sys
 vcf_reader = vcf.Reader(open('/home/koreanraichu/clinvar_20211218.vcf', 'r'))
 # 12월 18일에 업그레이드 된 따끈따끈한 데이터 납시오!
 CLNSIG=[]
@@ -26,7 +27,13 @@ print(sorted(CLNSIG_dict.items(),key=lambda x:x[1]))
 CLNSIG_dict_values=sorted(CLNSIG_dict.items(),key=lambda x:x[1])
 # value로 정렬(파이썬 자체로는 key 정렬만 되고 얘는 operator나 람다 써야 한다)
 # 근데 이렇게 해 놓으니까 줄글이라 불편하시죠?
-for n in range(len(CLNSIG_dict)):
-    print(sorted(CLNSIG_dict.items())[n])
+with open ('/home/koreanraichu/Result.txt','w') as result_write:
+    result_write.write('Sorted Result: ')
+    for n in range(len(CLNSIG_dict)):
+        print(sorted(CLNSIG_dict.items())[n])
+        result_write.write('\n')
+        result_write.write(sorted(CLNSIG_dict.items())[n][0])
+        result_write.write(": ")
+        result_write.write(str(sorted(CLNSIG_dict.items())[n][1])) # 와 진짜 파일쓰기 빡시네...
 # for문을 그대로 쓰면 딕셔너리의 Key가 문자열이기 때문에 오류가 난다.
 # 괄호 안을 sorted(CLNSIG_dict.items(),key=lambda x:x[1])로 바꾸면 Value로 정렬된 결과가 출력된다.

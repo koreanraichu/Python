@@ -1,7 +1,7 @@
 import vcf
 import pandas as pd
 # 모듈은 항상 위쪽에 부릅니다. (그쪽이 개인적으로 깔끔하고 편함)
-vcf_reader = vcf.Reader(open('/home/koreanraichu/clinvar_20211204.vcf', 'r'))
+vcf_reader = vcf.Reader(open('/home/koreanraichu/clinvar_20211218.vcf', 'r'))
 # gedit으로 여는데 엄청 방대해서 랙걸린다... (리눅스긴 한데 PC 사양이 그렇게 좋은 편은 아님)
 Chromosome=[]
 CLNSIG=[]
@@ -40,11 +40,13 @@ print(Gene_df2)
 Gene_df3=Gene_df.groupby(['Gene','CLNSIG']).count()
 Gene_df3=Gene_df3.sort_values('ID',ascending=0)
 print(Gene_df3.head(30))
-# 유전자 내에서 CLINSIC별로 가장 많은 걸 출력해주는 건 이거
+# 유전자 내에서 CLINSIG별로 가장 많은 걸 출력해주는 건 이거
 Gene_df3=Gene_df.groupby('Gene').count()
 Gene_df3=Gene_df3.sort_values('CLNSIG',ascending=0)
 print(Gene_df3.head(30))
 # 그냥 유전자별로 Top30(CLINSIC 분류 상관없이) 출력해주는 건 이거
+Gene_df3.to_csv('/home/koreanraichu/Result.csv')
+# pandas dataframe은 이걸로 저장한다.
 Gene_df3=Gene_df.groupby(['CLNSIG','Gene']).count()
 Gene_df3=Gene_df3.sort_values('Gene',ascending=0)
 print(Gene_df3.head(30))
@@ -57,4 +59,4 @@ Gene_df3=Gene_df.groupby(['CLNSIG','Gene','Chromosome']).count()
 Gene_df3=Gene_df3.sort_values(['CLNSIG','ID'],ascending=[True,False])
 print(Gene_df3.head(30))
 # 사실 이게 본인이 원했던 결과대로 딱 깔끔하게 뽑아주기는 한다. (CLNSIG 내에서 Gene으로, 분할 없이)
-# 근데 이거는 세 주기는 하는건가...하는 의심이... 
+# 근데 이거는 세 주기는 하는건가...하는 의심이...

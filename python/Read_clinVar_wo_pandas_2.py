@@ -21,5 +21,12 @@ for i in range(len(Gene_set)):
     Gene_dict[Gene_value_list[i]]=Gene_count[i]
 # 실행하는데 정~말 오래 걸린다..
 # 이쪽도 정렬이 된다.
-for n in range(30):
-    print(sorted(Gene_dict.items(),key=lambda x:x[1],reverse=True)[n]) # 내림차순+Top30
+with open ('/home/koreanraichu/Result.txt','w') as result_write:
+    result_write.write("Sorted: \n")
+    for n in range(len(Gene_set)):
+        print(sorted(Gene_dict.items(),key=lambda x:x[1],reverse=True)[n]) # 내림차순+Top30
+        result_write.write(sorted(Gene_dict.items(),key=lambda x:x[1],reverse=True)[n][0])
+        result_write.write(": ")
+        result_write.write(str(sorted(Gene_dict.items(), key=lambda x: x[1], reverse=True)[n][1]))
+        result_write.write("\n")
+# (마른세수)

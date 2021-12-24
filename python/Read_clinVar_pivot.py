@@ -35,3 +35,4 @@ Gene_pivot=Gene_df.pivot_table(index=['Gene','CLNSIG'],values="Chromosome",aggfu
 print(Gene_pivot)
 # 씁 근데 피벗테이블 생각보다 안이쁘다.
 # NaN을 0으로 대체할 수 있었으면 좋겠는데... (해당하는 값이 없으면 NaN이 뜸)
+Gene_pivot.to_csv('/home/koreanraichu/Pivot.csv')

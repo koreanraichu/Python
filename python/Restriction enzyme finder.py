@@ -50,7 +50,7 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,search_
         f.write(cut_feature)
         f.write("\n")
         f.write(search_sequence_name)
-        f.write(' | ')
+        f.write('\n')
         f.write(search_sequence)
         f.close()
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
@@ -63,7 +63,7 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,search_
         f.write(cut_feature)
         f.write("\n")
         f.write(search_sequence_name)
-        f.write(' | ')
+        f.write('\n')
         f.write("This restricion enzyme never cut this sequence. ")
         f.close()
         # DB에 효소가 있으나 일치하는 시퀀스가 없을 때

@@ -61,3 +61,4 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,search_
         f.write("This restriction enzyme not entried in database. ")
         f.close()
         # DB에 효소가 없을 때
+    # 저장 형식은 그대로고 코드가 좀 간소화되었습니다. 

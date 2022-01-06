@@ -1,7 +1,7 @@
 import vcf
 import pandas as pd
 # 모듈은 항상 위쪽에 부릅니다. (그쪽이 개인적으로 깔끔하고 편함)
-vcf_reader = vcf.Reader(open('/home/koreanraichu/clinvar_20211218.vcf', 'r'))
+vcf_reader = vcf.Reader(open('/home/koreanraichu/clinvar_20220103.vcf', 'r'))
 # gedit으로 여는데 엄청 방대해서 랙걸린다... (리눅스긴 한데 PC 사양이 그렇게 좋은 편은 아님)
 Chromosome=[]
 CLNSIG=[]

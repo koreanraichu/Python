@@ -45,6 +45,12 @@ for i in range(len(enzyme_table)):
         pass
     else: 
         pass
+if Iso == []:
+    Iso.append("No data")
+elif Neo == []:
+    Neo.append("No data")
+else: 
+    pass
 Iso = ', '.join(Iso)
 Neo = ', '.join(Neo)
 print("Isoschizomer: {0} \nNeoschizomer: {1}".format(Iso,Neo))

@@ -42,7 +42,7 @@ def count_func (a,b):
 # Cutter test하다가 여기에도 추가했음...
 
 if enzyme_table['Enzyme'].isin([enzyme]).any() == True:
-    print(search_sequence.find(res_find))
+    print(sequence.find(res_find))
 else:
     pass
 # 여기는 검색결과가 존재하지 않으면 -1로 나옵니다. (윗 블럭이랑 여기는 넘어가도 되는 부분)
@@ -55,12 +55,12 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         print(enzyme,",",cut_feature)
         print(sequence,cut_count)
         f.write("{0} | {1} | {2} | {3} times cut\n".format(enzyme,res_site,cut_feature,cut_count))
-        f.write('Sequence name: {0} \n {1}'.format(sequence_name,sequence))
+        f.write('Sequence name: {0} \n{1}'.format(sequence_name,sequence))
         f.close()
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
     elif enzyme_table['Enzyme'].isin([enzyme]).any() == True and sequence.find(res_find) == -1:
         print("No restriction site in this sequence. ")
-        f.write("{0} | {1} | {2} \n".format(enzyme,res_site,cut_feature))
+        f.write("{0} | {1} | {2} | 0 times cut\n".format(enzyme,res_site,cut_feature))
         f.write('Sequence name: {0} \n'.format(sequence_name))
         f.write("This restricion enzyme never cut this sequence. ")
         f.close()

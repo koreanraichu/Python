@@ -22,23 +22,33 @@ else:
     filter = "None"
     pass
 # 사용자가 입력한 필터에 따라 코드가 바뀝니다.
+sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
 sequence = input("검색할 시퀀스를 입력해주세요: ")
 # 시퀀스 입력하는 란
+def count_func (a,b):
+    while a in b:
+        global site_count
+        loc = b.find(a)
+        site_count += 1
+        b = b[loc+len(a):]
+    return site_count
+# 이거 통으로 코드에 넣었더니 if 안에 있는데도 시퀀스 없으면 끝내더라...
+# 몇 번 자르는지 세는 변수를 저기다 넣었더니 이상하게 돼서 결국 전역변수화 했습니다...
 count = 0
-with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,filter),'w',encoding='utf-8') as f:
-    f.write("Restriction enzyme which cuts this sequence: ")
+with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence_name),'w',encoding='utf-8') as f:
+    f.write("Restriction enzyme which cuts this sequence: \n")
     for i in range(len(enzyme_table)):
         enzyme = enzyme_table['Enzyme'][i]
         feature = enzyme_table['cut_feature'][i]
         res_find = enzyme_table['sequence'][i]
         res_find = str(res_find)
         if res_find in sequence:
-            print(enzyme, res_find, sequence.find(res_find))
-            f.write("{0}: {1} {2}\n".format(enzyme,res_find,feature))
+            site_count = 0
+            count_func(res_find,sequence)
             count += 1
+            f.write("{0}: {1} {2},{3} times cut.\n".format(enzyme,res_find,feature,site_count))
         else:
             count += 0
-    print(count)
     f.write("Total: {0} enzymes cut input sequence".format(count))
-# 여러분 드디어 저장기능이 추가되었습니다!!! 
-# 다만 얘가 한 번 자르는지, 여러 번 자르는지를 세는 건 추가 못했습니다...OTL 
+    f.close()
+# 여러분 드디어 저장기능이 추가되었습니다!!!

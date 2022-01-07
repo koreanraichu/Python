@@ -35,6 +35,11 @@ def count_func (a,b):
 # 이거 통으로 코드에 넣었더니 if 안에 있는데도 시퀀스 없으면 끝내더라...
 # 몇 번 자르는지 세는 변수를 저기다 넣었더니 이상하게 돼서 결국 전역변수화 했습니다...
 count = 0
+count_nocut = 0
+once_cut_list = []
+two_cut_list = []
+multi_cut_list = []
+nocut_list = []
 with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence_name),'w',encoding='utf-8') as f:
     f.write("Restriction enzyme which cuts this sequence: \n")
     for i in range(len(enzyme_table)):
@@ -46,9 +51,24 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
             site_count = 0
             count_func(res_find,sequence)
             count += 1
+            count_nocut += 0
+            if site_count == 1:
+                once_cut_list.append(enzyme)
+            elif site_count == 2:
+                two_cut_list.append(enzyme)
+            else:
+                multi_cut_list.append(enzyme)
             f.write("{0}: {1} {2},{3} times cut.\n".format(enzyme,res_find,feature,site_count))
         else:
             count += 0
-    f.write("Total: {0} enzymes cut input sequence".format(count))
+            count_nocut += 1
+            nocut_list.append(enzyme)
+    once_cut_list = ', '.join(once_cut_list)
+    two_cut_list = ', '.join(two_cut_list)
+    multi_cut_list = ', '.join(multi_cut_list)
+    nocut_list = ', '.join(nocut_list)
+    f.write("Total: {0} enzymes cut input sequence, {1} enzymes never cut this sequence. \n".format(count,count_nocut))
+    f.write("Enzyme cut once: {0} \nEnzyme cut two times: {1} \nEnzyme cut over 3 times: {2} \nEmzyme no cuts: {2}".format(once_cut_list,two_cut_list,multi_cut_list,nocut_list))
     f.close()
-# 여러분 드디어 저장기능이 추가되었습니다!!!
+# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...
+# 멀티컷... 오케이...

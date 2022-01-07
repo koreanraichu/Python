@@ -121,7 +121,7 @@ BmtI,GCTAGC,[GCTAG/C],sticky
 BnaI,GGATCC,[G/GATCC],sticky
 BpoAI,ATTAAT,[AT/TAAT],sticky
 Bpu14I,TTCGAA,[TT/CGAA],sticky
-Bpu95I,CGCG,[CG/CG].blunt
+Bpu95I,CGCG,[CG/CG],blunt
 BpuAmI,GAGCTC,[GAG/CTC],blunt
 BppuB5I,CGTACG,[C/GTACG],sticky
 Bsa29I,ATCGAT,[AT/CGAT],sticky
@@ -189,7 +189,7 @@ BspM39I,CAGCTG,[CAG/CTG],blunt
 BspM90I,GTATAC,[GTA/TAC],blunt
 BspMAI,CTGCAG,[CTGCA/G],sticky
 BspMKI,GTCGAC,[G/TCGAC],sticky
-BspO4I,CAGCTG,[CAG/CTG].blunt
+BspO4I,CAGCTG,[CAG/CTG],blunt
 BspOVII,ATCGAT,[AT/CGAT],sticky
 BspRI,GGCC,[GG/CC],blunt
 BspTI,CTTAAG,[C/TTAAG],sticky
@@ -306,7 +306,7 @@ EclXI,CGGCCG,[C/GGCCG],sticky
 Ecl37kI,CTGCAG,[CTGCA/G],sticky
 Ecl2zI,CTGCAG,[CTGCA/G],sticky
 Eco32I,GATATC,[GAT/ATC],blunt
-Eco47III,AGCGCT.[AGC/GCT],blunt
+Eco47III,AGCGCT,[AGC/GCT],blunt
 Eco52I,CGGCCG,[C/GGCCG],sticky
 Eco56I,GCCGGC,[G/CCGGC],sticky
 Eco72I,CACGTG,[CAC/GTG],blunt
@@ -319,7 +319,7 @@ EcoRI,GAATTC,[G/AATTC],sticky
 ECoRV,GATATC,[GAT/ATC],blunt
 EcoT22I,ATGCAT,[ATGCA/T],sticky
 EcoVIII,AAGCTT,[A/AGCTT],sticky
-Eco29kI,CCGCGG.[CCGC/GG],sticky
+Eco29kI,CCGCGG,[CCGC/GG],sticky
 Eco53kI,GAGCTC,[GAG/CTC],blunt
 EgeI,GGCGCC,[GGC/GCC],blunt
 EheI,GGCGCC,[GGC/GCC],blunt
@@ -457,7 +457,7 @@ NsbI,TGCGCA,[TGC/GCA],blunt
 NsiI,ATGCAT,[ATGCA/T],sticky
 NsiCI,GATATC,[GAT/ATC],blunt
 NspV,TTCGAA,[TT/CGAA],sticky
-Nsp29132OO,GGATCC,[G/GATTC]
+Nsp29132II,GGATCC,[G/GATCC],sticky
 NspLKI,GGCC,[GG/CC],blunt
 NspMACI,AGATCT,[A/GATCT],sticky
 NspASIV,GGATCC,[G/GATCC],sticky
@@ -515,7 +515,7 @@ Ppu10I,ATGCAT,[A/TGCAT],sticky
 Ppu111I,GAATTC,[G/AATTC],sticky
 PpuAI,CGTACG,[C/GTACG],sticky
 PshBI,ATTAAT,[AT/TAAT],sticky
-PsiI,TTATAA,[TTA/TAA].blunt
+PsiI,TTATAA,[TTA/TAA],blunt
 Psp23I,CTGCAG,[CTGCA/G],sticky
 Psp1406I,AACGTT,[AA/CGTT],sticky
 PspAI,CCCGGG,[C/CCGGG],sticky
@@ -572,11 +572,11 @@ SciI,CTCGAG,[CTC/GAG],blunt
 SciNI,GCGC,[G/CGC],sticky
 SdaI,CCTGCAGG,[CCTGCA/GG],sticky
 SelI,CGCG,[/CGCG],sticky
-SenPT16I,CGGCCG.[C/GGCCG],sticky
+SenPT16I,CGGCCG,[C/GGCCG],sticky
 SenPT14bI,CCGCGG,[CCGC/GG],sticky
 SepI,ATGCAT,[ATGCA/T],sticky
 SexBI,CCGCGG,[CCGC/GG],sticky
-SexCI,CCGCGG.[CCGC/GG],sticky
+SexCI,CCGCGG,[CCGC/GG],sticky
 SfaI,GGCC,[GG/CC],sticky
 SflI,CTGCAG,[CTGCA/G],sticky
 SfoI,GGCGCC,[GGC/GCC],blunt
@@ -608,7 +608,7 @@ Srl32DII,GAATTC,[G/AATTC],sticky
 Srl55DI,GAATTC,[G/AATTC],sticky
 SruI,TTTAAA,[TTT/AAA],blunt
 Sru4DI,ATTAAT,[AT/TAAT],sticky
-Sru30DI,AGGCCT.[AGG/CCT],blunt
+Sru30DI,AGGCCT,[AGG/CCT],blunt
 SsbI,AAGCTT,[A/AGCTT],sticky
 Sse9I,AATT,[/AATT],sticky
 Sse232I,CGCCGGCG,[CG/CCGGCG],sticky

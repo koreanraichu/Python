@@ -39,7 +39,8 @@ count_nocut = 0
 once_cut_list = []
 two_cut_list = []
 multi_cut_list = []
-nocut_list = []
+no_cut_list = []
+
 with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence_name),'w',encoding='utf-8') as f:
     f.write("Restriction enzyme which cuts this sequence: \n")
     for i in range(len(enzyme_table)):
@@ -54,21 +55,25 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
             count_nocut += 0
             if site_count == 1:
                 once_cut_list.append(enzyme)
-            elif site_count == 2:
+            elif site_count == 2: 
                 two_cut_list.append(enzyme)
-            else:
+            else: 
                 multi_cut_list.append(enzyme)
             f.write("{0}: {1} {2},{3} times cut.\n".format(enzyme,res_find,feature,site_count))
-        else:
+        else: 
             count += 0
             count_nocut += 1
-            nocut_list.append(enzyme)
+            no_cut_list.append(enzyme)
     once_cut_list = ', '.join(once_cut_list)
     two_cut_list = ', '.join(two_cut_list)
     multi_cut_list = ', '.join(multi_cut_list)
-    nocut_list = ', '.join(nocut_list)
+    no_cut_list = ', '.join(no_cut_list)
+    # 출력부
     f.write("Total: {0} enzymes cut input sequence, {1} enzymes never cut this sequence. \n".format(count,count_nocut))
-    f.write("Enzyme cut once: {0} \nEnzyme cut two times: {1} \nEnzyme cut over 3 times: {2} \nEmzyme no cuts: {2}".format(once_cut_list,two_cut_list,multi_cut_list,nocut_list))
+    f.write("Enzymes no cut this sequence: {0} \n".format(no_cut_list))
+    f.write("Enzymes cut this sequence once: {0} \n".format(once_cut_list))
+    f.write("Enzymes cut this sequence twice: {0} \n".format(two_cut_list))
+    f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
-# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...
-# 멀티컷... 오케이...
+# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락... 
+# 원래는 restrictin site 뽑아주려고 했는데...ㅋㅋㅋㅋㅋㅋ 

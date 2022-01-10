@@ -8,6 +8,21 @@ enzyme_table = enzyme_table.sort_values('Enzyme')
 enzyme_table.reset_index(inplace=True)
 # 니네는 꼭 합치고 나면 인덱스도 바꿔줘야되더라... 
 
+filter = input("sticky로 자르는 제한효소만 보고 싶으면 sticky, blunt로 자르는 제한효소만 보고 싶으면 blunt를 입력해주세요. ")
+# sticky: sticky end만 
+# blunt: blunt end만 
+# 입력 안 하면 적용 안됩니다. 
+if filter == 'sticky':
+    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'sticky']
+    enzyme_table.reset_index(inplace=True)
+elif filter == 'blunt':
+    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'blunt']
+    enzyme_table.reset_index(inplace=True)
+else: 
+    filter = "No Filter"
+    pass
+# 딱히 있어야 하는 기능인지는 모르겠지만, 있으면 좋잖아요? 
+
 def SeqtoString (a):
     a = enzyme_table.sequence[(enzyme_table['Enzyme'] == enzyme)]
     a = a.to_string(index = False)
@@ -29,6 +44,8 @@ else:
     print("다시 입력해주세요. ")
 # 효소 이름으로 찾느냐, 시퀀스로 찾느냐에 따라 검색 결과가 조금 다릅니다. (로직도 다름)
 
+print("Filter selected: {0}".format(filter))
+# filter 선택 여부는 로직과 상관없이 출력됩니다. 
 if keyword == "enzyme":
     find_seq = SeqtoString(enzyme)
     Site_seq = SitetoString(enzyme)

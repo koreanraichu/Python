@@ -39,26 +39,42 @@ def count_func (a,b):
         site_count += 1
         b = b[loc+len(a):]
     return site_count
-# Cutter test하다가 여기에도 추가했음...
+# Cutter test하다가 여기에도 추가했음... 
+def cut_func (a,b):
+    while a in b:
+        global res_loc # find로 나오는 값
+        global res_loc_list
+        seq_length = len(sequence)
+        loc = b.find(a)
+        b = b[loc+len(a):]
+        res_loc = len(sequence) - (len(b) + len(a)) + 1
+        res_loc_list.append(str(res_loc)) # find로 나오는 위치 목록(slicing에 따른 보정 필요)
+    return res_loc_list
+# 여기가 위치 관련 함수입니다. (cutter꺼 그대로 가져왔음)
 
 if enzyme_table['Enzyme'].isin([enzyme]).any() == True:
-    print(sequence.find(res_find))
-else:
     pass
-# 여기는 검색결과가 존재하지 않으면 -1로 나옵니다. (윗 블럭이랑 여기는 넘어가도 되는 부분)
+else: 
+    pass
+# 여기는 패스해도 됩니다. 처음에 로직 맞나 보려고 넣어 둔 블록이라;; 
 
-with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequence_name),'w',encoding='utf-8') as f:
+with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequence_name),'w',encoding='utf-8') as f: 
     if sequence.find(res_find) != -1:
         site_count = 0
+        res_loc = 0
+        res_loc_list = []
         cut_count = count_func(res_find,sequence)
+        cut_location = cut_func(res_find,sequence)
         sequence = sequence.replace(res_find,res_site)
+        res_loc_list = ', '.join(res_loc_list)
         print(enzyme,",",cut_feature)
-        print(sequence,cut_count)
+        print(sequence,cut_count,res_loc_list)
         f.write("{0} | {1} | {2} | {3} times cut\n".format(enzyme,res_site,cut_feature,cut_count))
+        f.write("Cut location(bp): {0} \n".format(res_loc_list))
         f.write('Sequence name: {0} \n{1}'.format(sequence_name,sequence))
         f.close()
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
-    elif enzyme_table['Enzyme'].isin([enzyme]).any() == True and sequence.find(res_find) == -1:
+    elif enzyme_table['Enzyme'].isin([enzyme]).any() == True and sequence.find(res_find) == -1:  
         print("No restriction site in this sequence. ")
         f.write("{0} | {1} | {2} | 0 times cut\n".format(enzyme,res_site,cut_feature))
         f.write('Sequence name: {0} \n'.format(sequence_name))

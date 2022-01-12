@@ -25,6 +25,7 @@ else:
 sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
 sequence = input("검색할 시퀀스를 입력해주세요: ")
 # 시퀀스 입력하는 란
+
 def count_func (a,b):
     while a in b:
         global site_count
@@ -32,8 +33,19 @@ def count_func (a,b):
         site_count += 1
         b = b[loc+len(a):]
     return site_count
-# 이거 통으로 코드에 넣었더니 if 안에 있는데도 시퀀스 없으면 끝내더라...
-# 몇 번 자르는지 세는 변수를 저기다 넣었더니 이상하게 돼서 결국 전역변수화 했습니다...
+# 이쪽은 컷수 세 주는 함수입니다. 
+def cut_func (a,b):
+    while a in b:
+        global res_loc # find로 나오는 값
+        global res_loc_list
+        seq_length = len(sequence)
+        loc = b.find(a)
+        b = b[loc+len(a):]
+        res_loc = len(sequence) - (len(b) + len(a)) + 1
+        res_loc_list.append(str(res_loc)) # find로 나오는 위치 목록(slicing에 따른 보정 필요)
+    return res_loc_list
+# 여기가 위치 관련 함수입니다.
+
 count = 0
 count_nocut = 0
 once_cut_list = []
@@ -50,7 +62,10 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
         res_find = str(res_find)
         if res_find in sequence:
             site_count = 0
+            res_loc = 0
+            res_loc_list = []
             count_func(res_find,sequence)
+            cut_func(res_find,sequence)
             count += 1
             count_nocut += 0
             if site_count == 1:
@@ -59,7 +74,8 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
                 two_cut_list.append(enzyme)
             else: 
                 multi_cut_list.append(enzyme)
-            f.write("{0}: {1} {2},{3} times cut.\n".format(enzyme,res_find,feature,site_count))
+            res_loc_list = ', '.join(res_loc_list)
+            f.write("{0}: {1} {2},{3} times cut. Where(bp): {4} \n".format(enzyme,res_find,feature,site_count,res_loc_list))
         else: 
             count += 0
             count_nocut += 1
@@ -76,4 +92,3 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
     f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
 # 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락... 
-# 원래는 restrictin site 뽑아주려고 했는데...ㅋㅋㅋㅋㅋㅋ 

@@ -195,7 +195,7 @@ BspRI,GGCC,[GG/CC],blunt
 BspTI,CTTAAG,[C/TTAAG],sticky
 BspT104I,TTCGAA,[TT/CGAA],sticky
 BspXI,ATCGAT,[AT/CGAT],sticky
-BspXII,[TGATCA,[T/GATCA],sticky
+BspXII,TGATCA,[T/GATCA],sticky
 BspZEI,ATCGAT,[AT/CGAT],sticky
 BsrBI,CCGCTC,[CCG/CTC],blunt
 BsrGI,TGTACA,[T/GTACA],sticky

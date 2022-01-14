@@ -67,8 +67,6 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         cut_location = cut_func(res_find,sequence)
         sequence = sequence.replace(res_find,res_site)
         res_loc_list = ', '.join(res_loc_list)
-        print(enzyme,",",cut_feature)
-        print(sequence,cut_count,res_loc_list)
         f.write("{0} | {1} | {2} | {3} times cut\n".format(enzyme,res_site,cut_feature,cut_count))
         f.write("Cut location(bp): {0} \n".format(res_loc_list))
         f.write('Sequence name: {0} \n{1}'.format(sequence_name,sequence))

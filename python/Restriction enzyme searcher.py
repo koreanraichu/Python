@@ -1,4 +1,5 @@
 import pandas as pd
+import re
 enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
 # 이쪽은 Finder나 cutter에도 쓰이는 그 DB가 맞습니다. 
 enzyme_table2 = pd.read_csv('/home/koreanraichu/restriction_RE.csv')
@@ -40,6 +41,10 @@ if keyword == "enzyme":
     enzyme = input("찾고자 하는 효소를 입력해주세요: ")
 elif keyword == "sequence":
     seq = input("찾고자 하는 restriction site sequence를 입력해주세요: ")
+elif keyword == "name":
+    enzyme_RE = input("효소의 이름이 뭘로 시작하나요? ")
+    enzyme_RE_2 = '^' + enzyme_RE
+    # 정규식에서 ~로 시작하는 걸 찾을때는 ^를 씁니다. 
 else: 
     print("다시 입력해주세요. ")
 # 효소 이름으로 찾느냐, 시퀀스로 찾느냐에 따라 검색 결과가 조금 다릅니다. (로직도 다름)
@@ -70,7 +75,7 @@ if keyword == "enzyme":
         else: 
             pass
 # 여기까지는 효소 이름으로 검색할 때의 코드
-else: 
+elif keyword == "sequence": 
     find_seq = seq
     print("Searched by: {0}".format(seq))
     for i in range(len(enzyme_table)):
@@ -82,6 +87,16 @@ else:
         else:
             pass
 # 여기까지는 인식 시퀀스로 검색할 때의 코드
+else: 
+    print("Enzyme with start with {0}".format(enzyme_RE))
+    for i in range(len(enzyme_table)):
+        DB_enzyme = str(enzyme_table['Enzyme'][i]).strip()
+        DB_seq = str(enzyme_table['sequence'][i]).strip().upper()
+        DB_site = str(enzyme_table['restriction_site'][i]).strip().upper()
+        if re.search(enzyme_RE_2,DB_enzyme):
+            print("{0} | {1} | {2}".format(DB_enzyme,DB_seq,DB_site))
+# 간단 검색(머릿글자)
+# 참고로 테스트 결과 정규식 문법이 먹혔습니다... 어째서냐... 
 
 if keyword == "enzyme":
     if Iso == []:
@@ -94,6 +109,7 @@ if keyword == "enzyme":
     Neo = ', '.join(Neo)
     print("Isoschizomer: {0} \nNeoschizomer: {1}".format(Iso,Neo))
     # 실제로 Isoschizomer인데도 Neoscizomer로 표기하는 문제가 있습니다. (BamHI-Nsp29132OO)
+    # DB 문제인건지 DB 수정하고 해결봤습니다. 
 else: 
     pass
-# 시퀀스로 검색하셨으면 이 부분은 넘어갑니다. 
+# 시퀀스로 검색하셨거나 정규식 검색을 사용하셨으면 이 부분은 넘어갑니다. 

@@ -1,17 +1,56 @@
 import pandas as pd
+import re
 from datetime import datetime
+enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
+enzyme_table2 = pd.read_csv('/home/koreanraichu/restriction_RE.csv')
+# 정규식 도입을 위해... 어쩔 수 없이 합쳤음... 
+enzyme_table = pd.concat([enzyme_table,enzyme_table2])
+enzyme_table = enzyme_table.sort_values('Enzyme')
+enzyme_table.reset_index(inplace=True)
+# 합쳤다... 
+
 year = datetime.today().year
 month = datetime.today().month
 day = datetime.today().day
-# 저장 파일에 역시나 날짜가 들어갑니다.
-enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
-enzyme_table = enzyme_table.sort_values('Enzyme')
-# Finder에도 쓰이는 '그' DB 맞습니다.
+# 이쪽은 파일 저장을 위해 현재 날짜 데이터를 추출하는 코드라 크게 수정할 부분은 없습니다. 
+
+class RE_treatment:
+    def RE_wildcard(self,before_seq):
+        self.before_seq = before_seq
+        before_seq = before_seq.replace("N",".")
+        return before_seq
+    # Wildcard: 시퀀스 데이터에 N이 있을 경우 Wildcard로 바꾼다. 
+    def RE_or(self,before_seq):
+        self.before_seq = before_seq
+        if "B" in before_seq:
+            before_seq = before_seq.replace("B","[CGT]")
+        elif "D" in before_seq:
+            before_seq = before_seq.replace("D","[AGT]")
+        elif "H" in before_seq:
+            before_seq = before_seq.replace("H","[ACT]")
+        elif "K" in before_seq:
+            before_seq = before_seq.replace("K","[GT]")
+        elif "M" in before_seq:
+            before_seq = before_seq.replace("M","[AC]")
+        elif "R" in before_seq:
+            before_seq = before_seq.replace("R","[AG]")
+        elif "S" in before_seq:
+            before_seq = before_seq.replace("S","[CG]")
+        elif "V" in before_seq:
+            before_seq = before_seq.replace("V","[ACG]")
+        elif "W" in before_seq:
+            before_seq = before_seq.replace("W","[AT]")
+        elif "Y" in before_seq:
+            before_seq = before_seq.replace("Y","[CT]")
+        return before_seq
+    # Or: 시퀀스 데이터에 N 말고 ATGC 말고 다른 알파벳이 있을 경우, 해당하는 정규식 문법으로 바꾼다. 
+
 filter = input("sticky로 자르는 제한효소만 보고 싶으면 sticky, blunt로 자르는 제한효소만 보고 싶으면 blunt를 입력해주세요. ")
-# sticky: sticky end만 보고 싶다
-# blunt: blunt만 보고 싶다
-# 아무것도 안 치면 전부 찾아줍니다. (사실상 sticky or blunt 외에 다)
+# sticky: sticky end만 
+# blunt: blunt end만 
+# 암것도 안 쓰면 다 봅니다. filter에 따라 테이블 형태가 달라집니다. 
 # 소문자로 입력해주세요, 대소문자 변환 기능은 제공하지 않습니다.
+
 if filter == 'sticky':
     enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'sticky']
     enzyme_table.reset_index(inplace=True)
@@ -22,6 +61,7 @@ else:
     filter = "None"
     pass
 # 사용자가 입력한 필터에 따라 코드가 바뀝니다.
+
 sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
 sequence = input("검색할 시퀀스를 입력해주세요: ")
 # 시퀀스 입력하는 란
@@ -29,22 +69,31 @@ sequence = input("검색할 시퀀스를 입력해주세요: ")
 def count_func (a,b):
     while a in b:
         global site_count
-        loc = b.find(a)
+        loc = b.find(a) # 해당 메소드가 정규식에서는 적용되지 않는 문제가 있어서, 이 부분도 수정 예정(그래서 Cut수는 안 세줍니다)
         site_count += 1
         b = b[loc+len(a):]
     return site_count
 # 이쪽은 컷수 세 주는 함수입니다. 
 def cut_func (a,b):
-    while a in b:
-        global res_loc # find로 나오는 값
-        global res_loc_list
-        seq_length = len(sequence)
-        loc = b.find(a)
-        b = b[loc+len(a):]
-        res_loc = len(sequence) - (len(b) + len(a)) + 1
-        res_loc_list.append(str(res_loc)) # find로 나오는 위치 목록(slicing에 따른 보정 필요)
+    global res_loc_list
+    locs = re.finditer(a,b)
+    for i in locs:
+        loc = i.start()
+        res_loc_list.append(str(loc))
     return res_loc_list
 # 여기가 위치 관련 함수입니다.
+def convert (a):
+    RE = RE_treatment()
+    while True:
+        if "N" in res_find:
+            res_find_after = RE.RE_wildcard(res_find)
+        elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find or "V" in res_find or "W" in res_find or "Y" in res_find: 
+            res_find_after = RE.RE_or(res_find)
+        else: 
+            break
+        return res_find_after
+# 함수가 대체 몇 개야...!!! 
+# 저 or 진짜 무식하게 다 때려박았음... 줄일 방법 제보 받아요... 
 
 count = 0
 count_nocut = 0
@@ -52,6 +101,7 @@ once_cut_list = []
 two_cut_list = []
 multi_cut_list = []
 no_cut_list = []
+# 변수와 리스트(크게 건들 일 없음)
 
 with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence_name),'w',encoding='utf-8') as f:
     f.write("Restriction enzyme which cuts this sequence: \n")
@@ -60,14 +110,17 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
         feature = enzyme_table['cut_feature'][i]
         res_find = enzyme_table['sequence'][i]
         res_find = str(res_find)
-        if res_find in sequence:
-            site_count = 0
-            res_loc = 0
-            res_loc_list = []
-            count_func(res_find,sequence)
-            cut_func(res_find,sequence)
+        if "N" in res_find or "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find:
+            res_find_after = str(convert(res_find))
+        else: 
+            res_find_after = res_find
+        # 정규식 처리 
+        Findall = re.findall(res_find_after,sequence)
+        res_loc_list = []
+        if Findall: 
             count += 1
-            count_nocut += 0
+            site_count = len(Findall)
+            cut_func(res_find_after,sequence)
             if site_count == 1:
                 once_cut_list.append(enzyme)
             elif site_count == 2: 
@@ -91,4 +144,4 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
     f.write("Enzymes cut this sequence twice: {0} \n".format(two_cut_list))
     f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
-# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락... 
+# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...(아직 정규식쪽은 적용 안 된 부분이 있습니다)

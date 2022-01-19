@@ -66,32 +66,21 @@ sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
 sequence = input("검색할 시퀀스를 입력해주세요: ")
 # 시퀀스 입력하는 란
 
-def count_func (a,b):
-    while a in b:
-        global site_count
-        loc = b.find(a) # 해당 메소드가 정규식에서는 적용되지 않는 문제가 있어서, 이 부분도 수정 예정(그래서 Cut수는 안 세줍니다)
-        site_count += 1
-        b = b[loc+len(a):]
-    return site_count
-# 이쪽은 컷수 세 주는 함수입니다. 
 def cut_func (a,b):
     global res_loc_list
     locs = re.finditer(a,b)
     for i in locs:
         loc = i.start()
-        res_loc_list.append(str(loc))
+        res_loc_list.append(str(loc+1))
     return res_loc_list
 # 여기가 위치 관련 함수입니다.
 def convert (a):
     RE = RE_treatment()
-    while True:
-        if "N" in res_find:
-            res_find_after = RE.RE_wildcard(res_find)
-        elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find or "V" in res_find or "W" in res_find or "Y" in res_find: 
-            res_find_after = RE.RE_or(res_find)
-        else: 
-            break
-        return res_find_after
+    if "N" in res_find:
+        res_find_after = RE.RE_wildcard(res_find)
+    elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find or "V" in res_find or "W" in res_find or "Y" in res_find: 
+        res_find_after = RE.RE_or(res_find)
+    return res_find_after
 # 함수가 대체 몇 개야...!!! 
 # 저 or 진짜 무식하게 다 때려박았음... 줄일 방법 제보 받아요... 
 
@@ -110,17 +99,21 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
         feature = enzyme_table['cut_feature'][i]
         res_find = enzyme_table['sequence'][i]
         res_find = str(res_find)
-        if "N" in res_find or "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find:
-            res_find_after = str(convert(res_find))
-        else: 
-            res_find_after = res_find
-        # 정규식 처리 
-        Findall = re.findall(res_find_after,sequence)
+        res_find_before = str(res_find)
+        while True:
+            if "N" in res_find: 
+                res_find = str(convert(res_find))
+            elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find:
+                res_find = str(convert(res_find))
+            else: 
+                break
+        # 정규식 처리
+        Findall = re.findall(res_find,sequence)
         res_loc_list = []
         if Findall: 
             count += 1
             site_count = len(Findall)
-            cut_func(res_find_after,sequence)
+            cut_func(res_find,sequence)
             if site_count == 1:
                 once_cut_list.append(enzyme)
             elif site_count == 2: 
@@ -128,7 +121,7 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
             else: 
                 multi_cut_list.append(enzyme)
             res_loc_list = ', '.join(res_loc_list)
-            f.write("{0}: {1} {2},{3} times cut. Where(bp): {4} \n".format(enzyme,res_find,feature,site_count,res_loc_list))
+            f.write("{0}: {1} {2}, {3} times cut. Where(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
         else: 
             count += 0
             count_nocut += 1
@@ -144,4 +137,4 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
     f.write("Enzymes cut this sequence twice: {0} \n".format(two_cut_list))
     f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
-# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...(아직 정규식쪽은 적용 안 된 부분이 있습니다)
+# 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...

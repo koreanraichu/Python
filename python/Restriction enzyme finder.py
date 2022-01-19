@@ -122,7 +122,6 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         f.write('Sequence name: {0} \n'.format(sequence_name))
         f.write("This restricion enzyme never cut this sequence. ")
         f.close()
-        print(enzyme,res_find,res_find_after)
         # DB에 효소가 있으나 일치하는 시퀀스가 없을 때
     else:
         print("No data in database. ")
@@ -130,4 +129,3 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         f.write("This restriction enzyme not entried in database. ")
         f.close()
         # DB에 효소가 없을 때
-        print(enzyme,res_find,res_find_after)

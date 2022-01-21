@@ -3,6 +3,11 @@ import re
 # 가라! 판다스! 
 from datetime import datetime
 # 오늘 날짜 가져오는 모듈
+from argparse import FileType
+import tkinter
+from tkinter import filedialog
+from Bio import SeqIO
+# FASTA 파일 처리 관련 모듈
 
 enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
 enzyme_table2 = pd.read_csv('/home/koreanraichu/restriction_RE.csv')
@@ -18,9 +23,24 @@ day = datetime.today().day
 # 파일 저장할 때 필요한 변수입니다. (코드 돌린 시점의 날짜 및 시간)
 
 enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
-sequence_name = input('Sequence 이름을 입력해주세요: ').strip()
-sequence = input('제한효소 site를 찾을 시퀀스를 입력해주세요: ').upper().strip()
-# 제한효소 이름 토씨 하나 안 틀리고 입력해야 합니다.
+FASTA_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA 혹은 fasta를 임력해주세요. ').upper()
+if FASTA_open == 'FASTA':
+    root = tkinter.Tk()
+    root.withdraw()
+    dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.fasta","*fasta"),("*.faa","*faa")))
+    try: 
+        fasta_read = SeqIO.read(dir_path,'fasta')
+        sequence_name = fasta_read.id
+        sequence = str(fasta_read.seq)
+        # 단식으로만 가져오게 함. 
+        print(dir_path,'FASTA 파일을 가져왔습니다! ')
+    except: 
+        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있어서 가져올 수 없습니다! ')
+        # 그래서 parse로 가져와야 하는 파일이면 에러떠여 
+else: 
+    sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
+    sequence = input("검색할 시퀀스를 입력해주세요: ")
+    # 시퀀스 입력하는 란
 
 class RE_treatment:
     def RE_wildcard(self,before_seq):
@@ -114,6 +134,7 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         f.write("{0} | {1} | {2} | {3} times cut\n".format(enzyme,res_site,cut_feature,cut_count))
         f.write("Cut location(bp): {0} \n".format(res_loc_list))
         f.write('Sequence name: {0} \n{1}'.format(sequence_name,sequence))
+        print('Your result savec by Result_{0}-{1}-{2}_{3}-{4}.txt. '.format(year,month,day,enzyme,sequence_name))
         f.close()
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
     elif not Findall:  

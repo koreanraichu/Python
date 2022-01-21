@@ -1,6 +1,12 @@
 import pandas as pd
 import re
 from datetime import datetime
+from argparse import FileType
+import tkinter
+from tkinter import filedialog
+from Bio import SeqIO
+# 정신사나워서 불러오는거랑 표 분리했습니다...OTL 
+
 enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
 enzyme_table2 = pd.read_csv('/home/koreanraichu/restriction_RE.csv')
 # 정규식 도입을 위해... 어쩔 수 없이 합쳤음... 
@@ -62,9 +68,24 @@ else:
     pass
 # 사용자가 입력한 필터에 따라 코드가 바뀝니다.
 
-sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
-sequence = input("검색할 시퀀스를 입력해주세요: ")
-# 시퀀스 입력하는 란
+FASTA_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA 혹은 fasta를 임력해주세요. ').upper()
+if FASTA_open == 'FASTA':
+    root = tkinter.Tk()
+    root.withdraw()
+    dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.fasta","*fasta"),("*.faa","*faa")))
+    try: 
+        fasta_read = SeqIO.read(dir_path,'fasta')
+        sequence_name = fasta_read.id
+        sequence = str(fasta_read.seq)
+        # 단식으로만 가져오게 함. 
+        print(dir_path,'FASTA 파일을 가져왔습니다! ')
+    except: 
+        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있어서 가져올 수 없습니다! ')
+        # 그래서 parse로 가져와야 하는 파일이면 에러떠여 
+else: 
+    sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
+    sequence = input("검색할 시퀀스를 입력해주세요: ")
+    # 시퀀스 입력하는 란
 
 def cut_func (a,b):
     global res_loc_list

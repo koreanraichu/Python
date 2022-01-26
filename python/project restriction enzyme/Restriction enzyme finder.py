@@ -8,6 +8,8 @@ import tkinter
 from tkinter import filedialog
 from Bio import SeqIO
 # FASTA 파일 처리 관련 모듈
+import os
+# 경로 관련 모듈
 
 enzyme_table = pd.read_csv('/home/koreanraichu/restriction_merge.csv')
 # 통합 DB 모셔왔습니다 선생님. 
@@ -37,14 +39,16 @@ if FASTA_open == 'FASTA':
         fasta_read = SeqIO.read(dir_path,'fasta')
         sequence_name = fasta_read.id
         sequence = str(fasta_read.seq)
+        sequence = sequence.upper()
         # 단식으로만 가져오게 함. 
-        print(dir_path,'FASTA 파일을 가져왔습니다! ')
+        print('{0} 파일에 있는 레코드를 가져왔습니다! '.format(dir_path))
     except: 
         records = SeqIO.parse(dir_path,'fasta')
         first_record = next(records)
         sequence_name = first_record.id
         sequence = str(first_record.seq)
-        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. ')
+        sequence = sequence.upper()
+        print('{0} 파일을 불러왔습니다. 이 파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. '.format(dir_path))
         # parse로 가져와야 하는 파일의 경우 맨 위 레코드 하나를 가져온다. 
         # read랑 parse는 FASTA 파일에 >가 하나인가 여러개인가 여부로 나뉩니다. 
 else: 
@@ -150,17 +154,17 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         else: 
             sequence = sequence.replace(res_find,res_site)
         res_loc_list = ', '.join(res_loc_list)
-        f.write("{0} | {1} | {2} | {3} times cut | Selectd filter: {4}, {5}\n".format(enzyme,res_site,cut_feature,cut_count,cut_feature,NEB_filter))
+        f.write("{0} | {1} | {2} | {3} times cut \n".format(enzyme,res_site,cut_feature,cut_count))
         f.write("Cut location(bp): {0} \n".format(res_loc_list))
-        f.write('Sequence name: {0} \n{1}'.format(sequence_name,sequence))
+        f.write('Sequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
         f.close()
         directory = os.getcwd()
         print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
     elif not Findall:  
         print("No restriction site in this sequence. ")
-        f.write("{0} | {1} | {2} | 0 times cut | Selectd filter: {3}, {4}\n".format(enzyme,res_site,cut_feature,cut_feature,NEB_filter))
-        f.write('Sequence name: {0} \n'.format(sequence_name))
+        f.write("{0} | {1} | {2} | 0 times cut \n".format(enzyme,res_site,cut_feature))
+        f.write('Sequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
         f.write("This restricion enzyme no cut this sequence. ")
         f.close()
         directory = os.getcwd()

@@ -92,21 +92,20 @@ if FASTA_open == 'FASTA':
         sequence = str(fasta_read.seq)
         sequence = sequence.upper()
         # 단식으로만 가져오게 함. 
-        print(dir_path,'FASTA 파일에 있는 레코드를 가져왔습니다! ')
+        print('{0} 파일에 있는 레코드를 가져왔습니다! '.format(dir_path))
     except: 
         records = SeqIO.parse(dir_path,'fasta')
         first_record = next(records)
         sequence_name = first_record.id
         sequence = str(first_record.seq)
         sequence = sequence.upper()
-        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. ')
+        print('{0} 파일을 불러왔습니다. 이 파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. '.format(dir_path))
         # parse로 가져와야 하는 파일의 경우 맨 위 레코드 하나를 가져온다. 
         # read랑 parse는 FASTA 파일에 >가 하나인가 여러개인가 여부로 나뉩니다. 
 else: 
     sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
     sequence = input("검색할 시퀀스를 입력해주세요: ")
     # 시퀀스 입력하는 란
-
 def cut_func (a,b):
     global res_loc_list
     locs = re.finditer(a,b)
@@ -132,8 +131,16 @@ two_cut_list = []
 multi_cut_list = []
 no_cut_list = []
 # 변수와 리스트(크게 건들 일 없음)
+count = 0
+count_nocut = 0
+once_cut_list = []
+two_cut_list = []
+multi_cut_list = []
+no_cut_list = []
+# 변수와 리스트(크게 건들 일 없음)
 
 with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',encoding='utf-8') as f:
+    f.write("Sequence name: {0}, Sequence length: {1}bp \n".format(sequence_name,len(sequence)))
     f.write("Filter selected: {0} | {1} \nRestriction enzyme which cuts this sequence: \n".format(cut_filter,NEB_filter))
     for i in range(len(enzyme_table)):
         enzyme = enzyme_table['Enzyme'][i]

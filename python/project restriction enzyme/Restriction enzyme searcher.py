@@ -30,6 +30,11 @@ def SitetoString (a):
     a = a.to_string(index = False)
     a = str(a).strip()
     return a
+def NEB_selling (a):
+    a = enzyme_table.NEB_sell[(enzyme_table['Enzyme'] == enzyme)]
+    a = a.to_string(index = False)
+    a = str(a).strip()
+    return a
 # 함수 가즈아!!! 
 
 keyword = input("효소 이름으로 찾으실거면 enzyme을, restriction site sequence로 찾으실거면 sequence를 입력해주세요. 혹시 찾고자 하는 효소 이름이 명확하지 않으시다면 name을 입력해주세요. ")
@@ -47,13 +52,15 @@ else:
 # 효소 이름으로 찾느냐, 시퀀스로 찾느냐에 따라 검색 결과가 다릅니다. 
 
 print("Filter selected: {0}".format(cut_filter))
+print("How to read: Name | Sequence | Cut | Selling in NEB?\n")
 # filter 정보는 로직과 상관없이 출력됩니다. 
 if keyword == "enzyme":
     find_seq = SeqtoString(enzyme)
     Site_seq = SitetoString(enzyme)
+    NEB_sell = NEB_selling(enzyme)
     Iso = []
     Neo = []
-    print("{0} | {1} | {2} | Input enzyme".format(enzyme,find_seq,Site_seq))
+    print("{0} | {1} | {2} | {3} | Input enzyme".format(enzyme,find_seq,Site_seq,NEB_sell))
     for i in range(len(enzyme_table)):
         DB_enzyme = str(enzyme_table['Enzyme'][i]).strip()
         DB_seq = str(enzyme_table['sequence'][i]).strip().upper()
@@ -61,11 +68,11 @@ if keyword == "enzyme":
         if find_seq == str(DB_seq) and DB_enzyme != enzyme:
             if Site_seq == DB_site:
                 Iso.append(DB_enzyme)
-                print("{0} | {1} | {2} | Isoschizomer".format(DB_enzyme,DB_seq,DB_site))
+                print("{0} | {1} | {2} | {3} | Isoschizomer".format(DB_enzyme,DB_seq,DB_site,NEB_sell))
                 # 인식하는 시퀀스와 자르는 방식이 같은 제한효소
             elif Site_seq != DB_site: 
                 Neo.append(DB_enzyme)
-                print("{0} | {1} | {2} | Neoschizomer".format(DB_enzyme,DB_seq,DB_site))
+                print("{0} | {1} | {2} | {3} | Neoschizomer".format(DB_enzyme,DB_seq,DB_site,NEB_sell))
                 # 인식하는 시퀀스는 같으나 자르는 방식이 다른 제한효소
         elif find_seq == str(DB_seq) and DB_enzyme == enzyme:
             pass
@@ -79,8 +86,9 @@ elif keyword == "sequence":
         DB_enzyme = str(enzyme_table['Enzyme'][i]).strip()
         DB_seq = str(enzyme_table['sequence'][i]).strip().upper()
         DB_site = str(enzyme_table['restriction_site'][i]).strip().upper()
+        DB_NEB = str(str(enzyme_table['NEB_sell'][i]).strip())
         if find_seq == DB_seq:
-            print("{0} | {1} | {2}".format(DB_enzyme,DB_seq,DB_site))
+            print("{0} | {1} | {2} | {3}".format(DB_enzyme,DB_seq,DB_site,DB_NEB))
         else:
             pass
 # 여기까지는 인식 시퀀스로 검색할 때의 코드
@@ -90,11 +98,11 @@ else:
         DB_enzyme = str(enzyme_table['Enzyme'][i]).strip()
         DB_seq = str(enzyme_table['sequence'][i]).strip().upper()
         DB_site = str(enzyme_table['restriction_site'][i]).strip().upper()
+        DB_NEB = str(str(enzyme_table['NEB_sell'][i]).strip())
         if re.search(enzyme_RE_2,DB_enzyme):
-            print("{0} | {1} | {2}".format(DB_enzyme,DB_seq,DB_site))
+            print("{0} | {1} | {2} | {3}".format(DB_enzyme,DB_seq,DB_site,DB_NEB))
 # 간단 검색(머릿글자)
 # 참고로 테스트 결과 정규식 문법이 먹혔습니다... 어째서냐... 
-
 if keyword == "enzyme":
     if Iso == []:
         Iso.append("No data")

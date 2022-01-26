@@ -9,18 +9,23 @@ from tkinter import filedialog
 from Bio import SeqIO
 # FASTA 파일 처리 관련 모듈
 
-enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
-enzyme_table2 = pd.read_csv('/home/koreanraichu/restriction_RE.csv')
-# 정규식 도입을 위해... 어쩔 수 없이 합쳤음... 
-enzyme_table = pd.concat([enzyme_table,enzyme_table2])
-enzyme_table = enzyme_table.sort_values('Enzyme')
-enzyme_table.reset_index(inplace=True)
-# 합쳤다... 드디어 합쳤습니다 여러분... 
+enzyme_table = pd.read_csv('/home/koreanraichu/restriction_merge.csv')
+# 통합 DB 모셔왔습니다 선생님. 
 
 year = datetime.today().year
 month = datetime.today().month
 day = datetime.today().day
 # 파일 저장할 때 필요한 변수입니다. (코드 돌린 시점의 날짜 및 시간)
+
+NEB_filter = input("혹시 NEB에서 취급하는 효소들만 보실거라면 NEB를 입력해주세요. ")
+NEB_filter = NEB_filter.upper()
+# NEB cutter에서 기본적으로 시퀀스 입력하면 나오는 효소들만 보여줍니다. (NEB에서 파는 애들만)
+if NEB_filter == "NEB":
+    enzyme_table = enzyme_table[enzyme_table['NEB_sell']== 'Yes']
+    enzyme_table.reset_index(inplace=True)
+else: 
+    NEB_filter = "All"
+    pass
 
 enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
 FASTA_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA 혹은 fasta를 임력해주세요. ').upper()
@@ -35,8 +40,13 @@ if FASTA_open == 'FASTA':
         # 단식으로만 가져오게 함. 
         print(dir_path,'FASTA 파일을 가져왔습니다! ')
     except: 
-        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있어서 가져올 수 없습니다! ')
-        # 그래서 parse로 가져와야 하는 파일이면 에러떠여 
+        records = SeqIO.parse(dir_path,'fasta')
+        first_record = next(records)
+        sequence_name = first_record.id
+        sequence = str(first_record.seq)
+        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. ')
+        # parse로 가져와야 하는 파일의 경우 맨 위 레코드 하나를 가져온다. 
+        # read랑 parse는 FASTA 파일에 >가 하나인가 여러개인가 여부로 나뉩니다. 
 else: 
     sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
     sequence = input("검색할 시퀀스를 입력해주세요: ")
@@ -99,12 +109,21 @@ res_find = str(res_find)
 while True:
     if "N" in res_find: 
         res_find = str(convert(res_find))
-        print(res_find)
     elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find:
         res_find = str(convert(res_find))
-        print(res_find)
     else: 
         break
+# 정규식 처리
+
+res_site = enzyme_table.restriction_site[(enzyme_table['Enzyme'] == enzyme)]
+res_site = res_site.to_string(index=False)
+res_site = res_site.upper()
+res_site = str(res_site)
+# 자르는 시퀀스 처리
+cut_feature = enzyme_table.cut_feature[(enzyme_table['Enzyme'] == enzyme)]
+cut_feature = cut_feature.to_string(index=False)
+cut_feature = str(cut_feature)
+# blunt or sticky(나중에 저장 기능 추가할 때 넣을 예정입니다)
 # 정규식 처리
 res_site = enzyme_table.restriction_site[(enzyme_table['Enzyme'] == enzyme)]
 res_site = res_site.to_string(index=False)
@@ -131,18 +150,21 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         else: 
             sequence = sequence.replace(res_find,res_site)
         res_loc_list = ', '.join(res_loc_list)
-        f.write("{0} | {1} | {2} | {3} times cut\n".format(enzyme,res_site,cut_feature,cut_count))
+        f.write("{0} | {1} | {2} | {3} times cut | Selectd filter: {4}, {5}\n".format(enzyme,res_site,cut_feature,cut_count,cut_feature,NEB_filter))
         f.write("Cut location(bp): {0} \n".format(res_loc_list))
         f.write('Sequence name: {0} \n{1}'.format(sequence_name,sequence))
-        print('Your result savec by Result_{0}-{1}-{2}_{3}-{4}.txt. '.format(year,month,day,enzyme,sequence_name))
         f.close()
+        directory = os.getcwd()
+        print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
     elif not Findall:  
         print("No restriction site in this sequence. ")
-        f.write("{0} | {1} | {2} | 0 times cut\n".format(enzyme,res_site,cut_feature))
+        f.write("{0} | {1} | {2} | 0 times cut | Selectd filter: {3}, {4}\n".format(enzyme,res_site,cut_feature,cut_feature,NEB_filter))
         f.write('Sequence name: {0} \n'.format(sequence_name))
-        f.write("This restricion enzyme never cut this sequence. ")
+        f.write("This restricion enzyme no cut this sequence. ")
         f.close()
+        directory = os.getcwd()
+        print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))
         # DB에 효소가 있으나 일치하는 시퀀스가 없을 때
     else:
         print("No data in database. ")

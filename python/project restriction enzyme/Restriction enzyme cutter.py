@@ -5,15 +5,11 @@ from argparse import FileType
 import tkinter
 from tkinter import filedialog
 from Bio import SeqIO
+import os
 # 정신사나워서 불러오는거랑 표 분리했습니다...OTL 
 
-enzyme_table = pd.read_csv('/home/koreanraichu/restriction.csv')
-enzyme_table2 = pd.read_csv('/home/koreanraichu/restriction_RE.csv')
-# 정규식 도입을 위해... 어쩔 수 없이 합쳤음... 
-enzyme_table = pd.concat([enzyme_table,enzyme_table2])
-enzyme_table = enzyme_table.sort_values('Enzyme')
-enzyme_table.reset_index(inplace=True)
-# 합쳤다... 
+enzyme_table = pd.read_csv('/home/koreanraichu/restriction_merge.csv')
+# 통합 DB 모셔왔습니다 선생님. 
 
 year = datetime.today().year
 month = datetime.today().month
@@ -57,16 +53,33 @@ filter = input("sticky로 자르는 제한효소만 보고 싶으면 sticky, blu
 # 암것도 안 쓰면 다 봅니다. filter에 따라 테이블 형태가 달라집니다. 
 # 소문자로 입력해주세요, 대소문자 변환 기능은 제공하지 않습니다.
 
-if filter == 'sticky':
-    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'sticky']
+cut_filter = input("Sticky로 자르는 제한효소만 보고 싶으면 sticky, Blunt로 자르는 제한효소만 보고 싶으면 blunt, Nicked로 자르는 제한효소만 보고 싶으면 nicked를 입력해주세요. ")
+cut_filter = cut_filter.capitalize()
+# Cut feature에 대한 코드. DNA가 Double strand일 때 Nicked는 한 쪽만 달랑달랑하게 자릅니다. 
+# 그러니까 대충 해리포터 시리즈에 나오는 목이 달랑달랑한 닉같이 DNA가 달랑달랑한거죠. 
+if cut_filter == 'Sticky':
+    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'Sticky']
     enzyme_table.reset_index(inplace=True)
-elif filter == 'blunt':
-    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'blunt']
+elif cut_filter == 'Blunt':
+    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'Blunt']
     enzyme_table.reset_index(inplace=True)
-else:
-    filter = "None"
+elif cut_filter == 'Nicked':
+    enzyme_table = enzyme_table[enzyme_table['cut_feature']== 'Nicked']
+    enzyme_table.reset_index(inplace=True)
+else: 
+    cut_filter = "All feature"
     pass
-# 사용자가 입력한 필터에 따라 코드가 바뀝니다.
+
+NEB_filter = input("혹시 NEB에서 취급하는 효소들만 보실거라면 NEB를 입력해주세요. ")
+NEB_filter = NEB_filter.upper()
+# NEB cutter에서 기본적으로 시퀀스 입력하면 나오는 효소들만 보여줍니다. (NEB에서 파는 애들만)
+if NEB_filter == "NEB":
+    enzyme_table = enzyme_table[enzyme_table['NEB_sell']== 'Yes']
+    enzyme_table.reset_index(inplace=True)
+else: 
+    NEB_filter = "All"
+    pass
+# Notes: 둘 다 선택 안 할 수도 있습니다. (해봤음)
 
 FASTA_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA 혹은 fasta를 임력해주세요. ').upper()
 if FASTA_open == 'FASTA':
@@ -77,11 +90,18 @@ if FASTA_open == 'FASTA':
         fasta_read = SeqIO.read(dir_path,'fasta')
         sequence_name = fasta_read.id
         sequence = str(fasta_read.seq)
+        sequence = sequence.upper()
         # 단식으로만 가져오게 함. 
-        print(dir_path,'FASTA 파일을 가져왔습니다! ')
+        print(dir_path,'FASTA 파일에 있는 레코드를 가져왔습니다! ')
     except: 
-        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있어서 가져올 수 없습니다! ')
-        # 그래서 parse로 가져와야 하는 파일이면 에러떠여 
+        records = SeqIO.parse(dir_path,'fasta')
+        first_record = next(records)
+        sequence_name = first_record.id
+        sequence = str(first_record.seq)
+        sequence = sequence.upper()
+        print('이 FASTA파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. ')
+        # parse로 가져와야 하는 파일의 경우 맨 위 레코드 하나를 가져온다. 
+        # read랑 parse는 FASTA 파일에 >가 하나인가 여러개인가 여부로 나뉩니다. 
 else: 
     sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
     sequence = input("검색할 시퀀스를 입력해주세요: ")
@@ -113,8 +133,8 @@ multi_cut_list = []
 no_cut_list = []
 # 변수와 리스트(크게 건들 일 없음)
 
-with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence_name),'w',encoding='utf-8') as f:
-    f.write("Restriction enzyme which cuts this sequence: \n")
+with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',encoding='utf-8') as f:
+    f.write("Filter selected: {0} | {1} \nRestriction enzyme which cuts this sequence: \n".format(cut_filter,NEB_filter))
     for i in range(len(enzyme_table)):
         enzyme = enzyme_table['Enzyme'][i]
         feature = enzyme_table['cut_feature'][i]
@@ -142,7 +162,7 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
             else: 
                 multi_cut_list.append(enzyme)
             res_loc_list = ', '.join(res_loc_list)
-            f.write("{0}: {1} {2}, {3} times cut. Where(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
+            f.write("Enzyme: {0} | Sequence: {1} | Cut feature: {2} | {3} times cut | Where(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
         else: 
             count += 0
             count_nocut += 1
@@ -158,4 +178,6 @@ with open('Result.txt_{0}-{1}-{2}_{3}_{4}'.format(year,month,day,filter,sequence
     f.write("Enzymes cut this sequence twice: {0} \n".format(two_cut_list))
     f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
+    directory = os.getcwd()
+    print("파일이 {0}에 저장되었습니다. ".format(directory))
 # 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...

@@ -30,14 +30,16 @@ else:
     pass
 
 enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
-FASTA_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA 혹은 fasta를 임력해주세요. ').upper()
-if FASTA_open == 'FASTA':
+enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
+FILE_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA를 임력해주세요. Genbank 파일을 불러오실거면 Genbank를 입력해주세요. ').upper()
+if FILE_open == 'FASTA':
     root = tkinter.Tk()
     root.withdraw()
     dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.fasta","*fasta"),("*.faa","*faa")))
     try: 
         fasta_read = SeqIO.read(dir_path,'fasta')
         sequence_name = fasta_read.id
+        sequence_description = fasta_read.description
         sequence = str(fasta_read.seq)
         sequence = sequence.upper()
         # 단식으로만 가져오게 함. 
@@ -46,16 +48,36 @@ if FASTA_open == 'FASTA':
         records = SeqIO.parse(dir_path,'fasta')
         first_record = next(records)
         sequence_name = first_record.id
+        sequence_description = first_record.description
         sequence = str(first_record.seq)
         sequence = sequence.upper()
         print('{0} 파일을 불러왔습니다. 이 파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. '.format(dir_path))
         # parse로 가져와야 하는 파일의 경우 맨 위 레코드 하나를 가져온다. 
         # read랑 parse는 FASTA 파일에 >가 하나인가 여러개인가 여부로 나뉩니다. 
+elif FILE_open == "GENBANK":
+    root = tkinter.Tk()
+    root.withdraw()
+    dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.gb","*gb"),("*.gbk","*gbk")))
+    try: 
+        genbank_read = SeqIO.read(dir_path,'genbank')
+        sequence_name = genbank_read.id
+        sequence_description = genbank_read.description
+        sequence = str(genbank_read.seq)
+        sequence = sequence.upper()
+        print('{0} 파일에 있는 레코드를 가져왔습니다! '.format(dir_path))
+    except:
+        genbank_read = SeqIO.parse(dir_path,'genbank')
+        sequence_name = genbank_read.id
+        sequence_description = genbank_read.description
+        sequence = str(genbank_read.seq)
+        sequence = sequence.upper()
+        print('{0} 파일에 있는 레코드를 가져왔습니다! '.format(dir_path))
 else: 
     sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
     sequence = input("검색할 시퀀스를 입력해주세요: ")
+    sequence_description = "Directed input sequence"
     # 시퀀스 입력하는 란
-
+    
 class RE_treatment:
     def RE_wildcard(self,before_seq):
         self.before_seq = before_seq
@@ -154,18 +176,18 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         else: 
             sequence = sequence.replace(res_find,res_site)
         res_loc_list = ', '.join(res_loc_list)
-        f.write("{0} | {1} | {2} | {3} times cut \n".format(enzyme,res_site,cut_feature,cut_count))
+        f.write("=====Restriction enzyme information=====\n{0} | {1} | {2} | {3} times cut \n".format(enzyme,res_site,cut_feature,cut_count))
         f.write("Cut location(bp): {0} \n".format(res_loc_list))
-        f.write('Sequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
+        f.write('=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
         f.close()
         directory = os.getcwd()
         print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
     elif not Findall:  
         print("No restriction site in this sequence. ")
-        f.write("{0} | {1} | {2} | 0 times cut \n".format(enzyme,res_site,cut_feature))
-        f.write('Sequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
-        f.write("This restricion enzyme no cut this sequence. ")
+        f.write("=====Restriction enzyme information=====\n{0} | {1} | {2} | 0 times cut \n".format(enzyme,res_site,cut_feature))
+        f.write("This restricion enzyme no cut this sequence. \n")
+        f.write('=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
         f.close()
         directory = os.getcwd()
         print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))

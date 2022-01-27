@@ -82,13 +82,15 @@ else:
 # Notes: 둘 다 선택 안 할 수도 있습니다. (해봤음)
 
 FASTA_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA 혹은 fasta를 임력해주세요. ').upper()
-if FASTA_open == 'FASTA':
+FILE_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA를 임력해주세요. Genbank 파일을 불러오실거면 Genbank를 입력해주세요. ').upper()
+if FILE_open == 'FASTA':
     root = tkinter.Tk()
     root.withdraw()
     dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.fasta","*fasta"),("*.faa","*faa")))
     try: 
         fasta_read = SeqIO.read(dir_path,'fasta')
         sequence_name = fasta_read.id
+        sequence_description = fasta_read.description
         sequence = str(fasta_read.seq)
         sequence = sequence.upper()
         # 단식으로만 가져오게 함. 
@@ -97,15 +99,36 @@ if FASTA_open == 'FASTA':
         records = SeqIO.parse(dir_path,'fasta')
         first_record = next(records)
         sequence_name = first_record.id
+        sequence_description = first_record.description
         sequence = str(first_record.seq)
         sequence = sequence.upper()
         print('{0} 파일을 불러왔습니다. 이 파일은 한 파일에 여러 개가 기록되어 있습니다. 맨 위에 있는 데이터로 진행하겠습니다. '.format(dir_path))
         # parse로 가져와야 하는 파일의 경우 맨 위 레코드 하나를 가져온다. 
         # read랑 parse는 FASTA 파일에 >가 하나인가 여러개인가 여부로 나뉩니다. 
+elif FILE_open == "GENBANK":
+    root = tkinter.Tk()
+    root.withdraw()
+    dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.gb","*gb"),("*.gbk","*gbk")))
+    try: 
+        genbank_read = SeqIO.read(dir_path,'genbank')
+        sequence_name = genbank_read.id
+        sequence_description = genbank_read.description
+        sequence = str(genbank_read.seq)
+        sequence = sequence.upper()
+        print('{0} 파일에 있는 레코드를 가져왔습니다! '.format(dir_path))
+    except:
+        genbank_read = SeqIO.parse(dir_path,'genbank')
+        sequence_name = genbank_read.id
+        sequence_description = genbank_read.description
+        sequence = str(genbank_read.seq)
+        sequence = sequence.upper()
+        print('{0} 파일에 있는 레코드를 가져왔습니다! '.format(dir_path))
 else: 
     sequence_name = input("검색할 시퀀스의 이름을 입력해주세요: ")
     sequence = input("검색할 시퀀스를 입력해주세요: ")
+    sequence_description = "Directed input sequence"
     # 시퀀스 입력하는 란
+
 def cut_func (a,b):
     global res_loc_list
     locs = re.finditer(a,b)
@@ -140,8 +163,9 @@ no_cut_list = []
 # 변수와 리스트(크게 건들 일 없음)
 
 with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',encoding='utf-8') as f:
-    f.write("Sequence name: {0}, Sequence length: {1}bp \n".format(sequence_name,len(sequence)))
-    f.write("Filter selected: {0} | {1} \nRestriction enzyme which cuts this sequence: \n".format(cut_filter,NEB_filter))
+    f.write("=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \nSequence description: {2}\n".format(sequence_name,len(sequence),sequence_description))
+    f.write("=====Running information======\nFilter selected: {0} | {1} \nRestriction enzyme which cuts this sequence: \n".format(cut_filter,NEB_filter))
+    f.write("=====Result=====\n")
     for i in range(len(enzyme_table)):
         enzyme = enzyme_table['Enzyme'][i]
         feature = enzyme_table['cut_feature'][i]
@@ -169,7 +193,7 @@ with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',
             else: 
                 multi_cut_list.append(enzyme)
             res_loc_list = ', '.join(res_loc_list)
-            f.write("Enzyme: {0} | Sequence: {1} | Cut feature: {2} | {3} times cut | Where(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
+            f.write("Enzyme: {0} | Sequence: {1} | Cut feature: {2} | {3} times cut \nWhere(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
         else: 
             count += 0
             count_nocut += 1

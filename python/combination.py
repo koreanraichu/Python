@@ -10,4 +10,4 @@ n = int(input("n에 들어가는 수를 입력해주세요: "))
 r = int(input("r에 들어가는 수를 입력해주세요: "))
 bunmo = factorial(r) * factorial(n - r)
 C = factorial(n)/bunmo
-print(C)
+print("{}개의 원소들 중 {}개를 무작위로 선택하는 가짓수는 {}입니다. ".format(n,r,int(C)))

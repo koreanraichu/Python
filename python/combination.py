@@ -1,9 +1,15 @@
 # n개의 원소 중 r개를 택하는 것이 조합입니다. nCr로 표기합니다. 
 def factorial(a):
     factorial = 1
-    for i in range(1,a+1):
-        factorial = factorial * i
-    return factorial
+    if a < 0:
+        return False
+    elif a == 0:
+        factorial = 1
+        return factorial
+    else:
+        for i in range(a,0,-1):
+            factorial *= i
+        return factorial
 # 아 얘는 조합 구하는데 순열이 필요해서 어쩔 수 없음. 
 # nCr을 구하는 공식은 n!/r!(n-r)!입니다. 
 n = int(input("n에 들어가는 수를 입력해주세요: "))

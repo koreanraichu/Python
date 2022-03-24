@@ -1,5 +1,5 @@
 import sys
-a = int(sys.stdin.readline())
+a = float(sys.stdin.readline())
 # 역사와 전통의 그거 맞음
 
 def factorial(a):
@@ -9,8 +9,10 @@ def factorial(a):
     elif a == 0:
         factorial = 1
         return factorial
+    elif a % 1 != 0:
+        return False
     else:
-        for i in range(a,0,-1):
+        for i in range(int(a),0,-1):
             factorial *= i
         return factorial
 # Factorial 구하는 로직(...)

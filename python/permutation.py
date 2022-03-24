@@ -6,8 +6,10 @@ def factorial(a):
     elif a == 0:
         factorial = 1
         return factorial
+    elif a % 1 != 0:
+        return False
     else:
-        for i in range(a,0,-1):
+        for i in range(int(a),0,-1):
             factorial *= i
         return factorial
 # 순열에 팩토리얼이 들어가서 어쩔 수 없어요... 

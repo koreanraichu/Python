@@ -6,8 +6,10 @@ def factorial(a):
     elif a == 0:
         factorial = 1
         return factorial
+    elif a % 1 != 0:
+        return False
     else:
-        for i in range(a,0,-1):
+        for i in range(int(a),0,-1):
             factorial *= i
         return factorial
 # 아 얘는 조합 구하는데 순열이 필요해서 어쩔 수 없음. 

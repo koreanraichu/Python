@@ -6,7 +6,7 @@ a = complex(sys.stdin.readline())
 t = symbols("t")
 expr = t ** (a - 1) * exp(-t)
 gamma_function = integrate((expr),(t,0,oo))
-if a.real > 0:
+if a.real > 0 and a.imag == 0:
     if gamma_function % 1 == 0:
         print(round(gamma_function))
     else: 

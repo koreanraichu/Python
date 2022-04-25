@@ -32,6 +32,7 @@ py file이랑 jupyter notebook이 확장자가 다르긴 하죠. 근데 언어�
       <li>Biopython: Biopython 하면서 코드 따라해본 것들은 여기 있습니다. (파일명에 뭐 했는지 대충 써있음)</li>
       <li>Practice: 교육받으면서 따라했던 코드들이 있습니다. </li>
       <li>Project restriction enzyme: 제한효소 관련 코드 및 관련 DB는 이 폴더에 있습니다. (Jupyter file 및 py file)</li>
+      <li>Project wordcloud: 워드클라우드 코드가 들어있습니다. (최근에 분리함)</li>
     </ol>
   </li>
 </ol>

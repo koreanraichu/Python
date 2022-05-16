@@ -6,11 +6,11 @@
 파이썬과 달리 R은 터미널에서 불러서 바로바로 하는 편이라 뭐가 남는 건 없습니다. <br>
 <br>
 근데 이 와중에 Python이랑 Jupyter notebook 분리된 거 보게... <br>
-py file이랑 jupyter notebook이 확장자가 다르긴 하죠. 근데 언어는 파이썬 아닌가... <br>
+Jupyter notebook이 파이썬 파일이랑 확장자가 다르긴 하죠. 근데 언어는 파이썬 아닌가... <br>
 왜 나눠놨대... <br>
 <br>
-피드백은 환영합니다. <br>
-참고로 한국어를 선호하긴 하지만 영어 일본어도 가능합니다. 
+피드백 환영합니다. <br>
+한국어를 선호하긴 하지만 영어 일본어도 가능은 합니다. 
 <h2>Repository 폴더 내에 든 파일들</h2>
 <ol>
   <li>JSP</li>
@@ -38,4 +38,4 @@ py file이랑 jupyter notebook이 확장자가 다르긴 하죠. 근데 언어�
 </ol>
 <h2>How to contact</h2>
 Mail: blackholekun@gmail.com(해외)/pokemonms@naver.com(국내) <br>
-Discord Name: Lv. 32 라이츄💕#5597/Discord ID: 320538255512698881
+TEL: +82-10-5027-0328

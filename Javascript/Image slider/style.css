@@ -1,0 +1,57 @@
+.container {
+    width:815px;
+    margin:0 auto;
+}
+
+h1 {
+    text-align:center;
+}
+
+.slider {
+    height:815px;
+    width:815px;
+    overflow:hidden; /*한 장만 보여주기 위해 필요*/
+}
+
+.image {
+    position:relative;
+    display:flex;
+    height:815px;
+}
+
+img {
+    width:815px;
+    height:815px;
+}
+
+button, button:active, button:focus {
+    width:100px;
+    height:30px;
+    border:1px dotted dodgerblue;
+    color:dodgerblue;
+    background-color:white;
+    outline:none;
+}
+
+button:hover {
+    background-color:dodgerblue;
+    color:white
+}
+
+button:disabled {
+    border:1px dotted gray;
+    color:gray;
+}
+
+button:disabled:hover {
+    background-color:gray;
+    color:white;
+}
+
+.prev {
+    float:left;
+}
+
+.next {
+    float:right;
+}

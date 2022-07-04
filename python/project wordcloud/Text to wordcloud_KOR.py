@@ -13,12 +13,21 @@ from argparse import FileType
 import tkinter
 from tkinter import filedialog
 # 파일 저장 관련 모듈
+import platform
 
 def munjang_to_noun (a):
     a = ' '.join(a)
     a = okt.nouns(a)
     a = ' '.join(a)
     return a
+
+OS = platform.platform()
+if 'Linux' in OS: 
+    default_dir = '/home'
+    font_dir = '/usr/share/fonts'
+else:
+    default_dir = 'C:\\'
+    font_dir = 'C:\\Fonts'
 
 text = []
 while True: 
@@ -30,18 +39,18 @@ text = munjang_to_noun(text)
 
 root = tkinter.Tk()
 root.withdraw()
-dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
+dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 image = np.array(Image.open(dir_path)) 
 # 마스킹할 이미지(흰 바탕에 검정색을 권장함)
 image = np.array(Image.open(dir_path))
-font_path = '/usr/share/fonts/dovemayo.otf'
+font_path = font_dir
 wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
                       background_color="#ffffff",colormap="inferno",width = 960, height=960,
                       mask=image)
 
 root = tkinter.Tk()
 root.withdraw()
-save_path = filedialog.asksaveasfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
+save_path = filedialog.asksaveasfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 # 워드클라우드 저장하는 경로(저장은 png파일만 됩니다)
 wordcloud = wordcloud.generate_from_text(str(text))
 plot.figure(figsize=(15,15))

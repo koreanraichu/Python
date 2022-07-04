@@ -6,6 +6,7 @@ import numpy as np
 from argparse import FileType
 import tkinter
 from tkinter import filedialog
+import platform
 # Summon module
 
 text = []
@@ -16,12 +17,20 @@ while True:
         break
 text = ''.join(text)
 
+OS = platform.platform()
+if 'Linux' in OS: 
+    default_dir = '/home'
+    font_dir = '/usr/share/fonts'
+else:
+    default_dir = 'C:\\'
+    font_dir = 'C:\\Fonts'
+
 root = tkinter.Tk()
 root.withdraw()
-dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
+dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 image = np.array(Image.open(dir_path)) 
 # 마스킹할 이미지(흰 바탕에 검정색을 권장함)
-font_path = '/usr/share/fonts/SUNRISE-ISLAND.ttf'
+font_path = font_dir
 wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
                       background_color="#ffffff",colormap="magma",width = 960, height=960,
                       mask=image)
@@ -31,7 +40,7 @@ wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
 
 root = tkinter.Tk()
 root.withdraw()
-save_path = filedialog.asksaveasfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
+save_path = filedialog.asksaveasfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 # 워드클라우드 저장하는 경로(저장은 png파일만 됩니다)
 wordcloud = wordcloud.generate_from_text(text)
 plot.figure(figsize=(15,15))

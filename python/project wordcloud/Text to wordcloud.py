@@ -21,9 +21,9 @@ OS = platform.platform()
 if 'Linux' in OS: 
     default_dir = '/home'
     font_dir = '/usr/share/fonts'
-else:
+elif 'Windows' in OS:
     default_dir = 'C:\\'
-    font_dir = 'C:\\Fonts'
+    font_dir = 'C:\\Windows\\Fonts'
 
 root = tkinter.Tk()
 root.withdraw()

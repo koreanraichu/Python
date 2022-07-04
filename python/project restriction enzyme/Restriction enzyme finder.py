@@ -9,6 +9,7 @@ from tkinter import filedialog
 from Bio import SeqIO
 # FASTA 파일 처리 관련 모듈
 import os
+import platform
 # 경로 관련 모듈
 
 enzyme_table = pd.read_csv('/home/koreanraichu/restriction_merge.csv')
@@ -18,6 +19,12 @@ year = datetime.today().year
 month = datetime.today().month
 day = datetime.today().day
 # 파일 저장할 때 필요한 변수입니다. (코드 돌린 시점의 날짜 및 시간)
+
+OS = platform.platform()
+if 'Linux' in OS:
+    default_dir = '/'
+else: 
+    default_dir = 'C:\\'
 
 NEB_filter = input("혹시 NEB에서 취급하는 효소들만 보실거라면 NEB를 입력해주세요. ")
 NEB_filter = NEB_filter.upper()
@@ -35,7 +42,7 @@ FILE_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 
 if FILE_open == 'FASTA':
     root = tkinter.Tk()
     root.withdraw()
-    dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.fasta","*fasta"),("*.faa","*faa")))
+    dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.fasta","*fasta"),("*.faa","*faa")))
     try: 
         fasta_read = SeqIO.read(dir_path,'fasta')
         sequence_name = fasta_read.id
@@ -57,7 +64,7 @@ if FILE_open == 'FASTA':
 elif FILE_open == "GENBANK":
     root = tkinter.Tk()
     root.withdraw()
-    dir_path = filedialog.askopenfilename(parent=root,initialdir="/home/koreanraichu",title='Please select a directory',filetypes = (("*.gb","*gb"),("*.gbk","*gbk")))
+    dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.gb","*gb"),("*.gbk","*gbk")))
     try: 
         genbank_read = SeqIO.read(dir_path,'genbank')
         sequence_name = genbank_read.id

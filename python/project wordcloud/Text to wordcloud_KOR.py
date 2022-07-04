@@ -25,9 +25,13 @@ OS = platform.platform()
 if 'Linux' in OS: 
     default_dir = '/home'
     font_dir = '/usr/share/fonts'
+    font_path = font_dir
 elif 'Windows' in OS:
     default_dir = 'C:\\'
-    font_dir = 'C:\\Windows\\Fonts'
+    font_dir = 'C:\\'
+    root = tkinter.Tk()
+    font_path = filedialog.askopenfilename(parent=root, initialdir=default_dir, title='Choose your fonts for Wordcloud',
+                                           filetypes=(("*.ttf", "*ttf"), ("*.otf", "*otf")))
 
 text = []
 while True: 

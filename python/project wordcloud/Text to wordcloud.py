@@ -21,16 +21,19 @@ OS = platform.platform()
 if 'Linux' in OS: 
     default_dir = '/home'
     font_dir = '/usr/share/fonts'
+    font_path = font_dir
 elif 'Windows' in OS:
     default_dir = 'C:\\'
-    font_dir = 'C:\\Windows\\Fonts'
+    font_dir = 'C:\\'
+    root = tkinter.Tk()
+    font_path = filedialog.askopenfilename(parent=root, initialdir=default_dir, title='Choose your fonts for Wordcloud',
+                                           filetypes=(("*.ttf", "*ttf"), ("*.otf", "*otf")))
 
 root = tkinter.Tk()
 root.withdraw()
-dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
+dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Add your masking Image',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 image = np.array(Image.open(dir_path)) 
 # 마스킹할 이미지(흰 바탕에 검정색을 권장함)
-font_path = font_dir
 wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
                       background_color="#ffffff",colormap="magma",width = 960, height=960,
                       mask=image)
@@ -40,7 +43,7 @@ wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
 
 root = tkinter.Tk()
 root.withdraw()
-save_path = filedialog.asksaveasfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
+save_path = filedialog.asksaveasfilename(parent=root,initialdir=default_dir,title='Save locations for wordcloud',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 # 워드클라우드 저장하는 경로(저장은 png파일만 됩니다)
 wordcloud = wordcloud.generate_from_text(text)
 plot.figure(figsize=(15,15))

@@ -31,9 +31,13 @@ OS = platform.platform()
 if 'Linux' in OS: 
     default_dir = '/home'
     font_dir = '/usr/share/fonts'
+    font_path = font_dir
 elif 'Windows' in OS:
     default_dir = 'C:\\'
-    font_dir = 'C:\\Windows\\Fonts'
+    font_dir = 'C:\\'
+    root = tkinter.Tk()
+    font_path = filedialog.askopenfilename(parent=root, initialdir=default_dir, title='Choose your fonts for Wordcloud',
+                                           filetypes=(("*.ttf", "*ttf"), ("*.otf", "*otf")))
 
 handle = Entrez.esearch(db="pubmed", term=terms,retmax=howmuch)
 record = Entrez.read(handle)
@@ -53,7 +57,7 @@ root = tkinter.Tk()
 root.withdraw()
 dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 image = np.array(Image.open(dir_path))
-font_path = filedialog.askopenfilename(parent=root,initialdir=font_dir,title='Please select a directory',filetypes = (("*.ttf","*ttf"),("*.otf","*otf")))
+font_path = filedialog.askopenfilename(parent=root,initialdir=font_path,title='Please select a directory',filetypes = (("*.ttf","*ttf"),("*.otf","*otf")))
 # 할때마다 바꾸기 귀찮으면 여기는 폰트 고정해놓고 쓰셔도 됩니다. 참고로 리눅스는 글꼴 다 저깄음... 
 wordcloud = WordCloud(font_path = font_path,
                       background_color="#ffffff",colormap="Dark2",width = 960, height=960,

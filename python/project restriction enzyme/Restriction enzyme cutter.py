@@ -169,7 +169,11 @@ multi_cut_list = []
 no_cut_list = []
 # 변수와 리스트(크게 건들 일 없음)
 
-with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',encoding='utf-8') as f:
+root = tkinter.Tk()
+root.withdraw()
+save_path = filedialog.askdirectory()
+
+with open('Result_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',encoding='utf-8') as f:
     f.write("=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \nSequence description: {2}\n".format(sequence_name,len(sequence),sequence_description))
     f.write("=====Running information======\nFilter selected: {0} | {1} \nRestriction enzyme which cuts this sequence: \n".format(cut_filter,NEB_filter))
     f.write("=====Result=====\n")
@@ -216,6 +220,6 @@ with open('Result.txt_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',
     f.write("Enzymes cut this sequence twice: {0} \n".format(two_cut_list))
     f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
-    directory = os.getcwd()
+    directory = save_path
     print("파일이 {0}에 저장되었습니다. ".format(directory))
 # 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...

@@ -168,6 +168,10 @@ cut_feature = cut_feature.to_string(index=False)
 cut_feature = str(cut_feature)
 # blunt or sticky(나중에 저장 기능 추가할 때 넣을 예정입니다)
 
+root = tkinter.Tk()
+root.withdraw()
+save_path = filedialog.askdirectory()
+
 with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequence_name),'w',encoding='utf-8') as f: 
     Findall = re.findall(res_find,sequence)
     if Findall:
@@ -187,7 +191,7 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         f.write("Cut location(bp): {0} \n".format(res_loc_list))
         f.write('=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
         f.close()
-        directory = os.getcwd()
+        directory = save_path
         print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))
         # DB에 효소가 있고 일치하는 시퀀스가 있을 때
     elif not Findall:  
@@ -196,7 +200,7 @@ with open ('Result_{0}-{1}-{2}_{3}-{4}.txt'.format(year,month,day,enzyme,sequenc
         f.write("This restricion enzyme no cut this sequence. \n")
         f.write('=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \n{2}'.format(sequence_name,len(sequence),sequence))
         f.close()
-        directory = os.getcwd()
+        directory = save_path
         print('Your result saved by Result_{0}-{1}-{2}_{3}-{4}.txt, where {5}. '.format(year,month,day,enzyme,sequence_name,directory))
         # DB에 효소가 있으나 일치하는 시퀀스가 없을 때
     else:

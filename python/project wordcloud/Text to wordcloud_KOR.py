@@ -43,6 +43,7 @@ while True:
     if input_text == "":
         break
 text = munjang_to_noun(text)
+colormap = input("wordcloud에 적용할 컬러맵 이름을 적어주세요. (Hint: Matplotlib colormap을 쳐보세요)")
 
 root = tkinter.Tk()
 root.withdraw()
@@ -51,7 +52,7 @@ image = np.array(Image.open(dir_path))
 # 마스킹할 이미지(흰 바탕에 검정색을 권장함)
 image = np.array(Image.open(dir_path))
 wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
-                      background_color="#ffffff",colormap="inferno",width = 960, height=960,
+                      background_color="#ffffff",colormap=colormap,width = 960, height=960,
                       mask=image)
 
 root = tkinter.Tk()

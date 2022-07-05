@@ -14,6 +14,7 @@ Entrez.email = "blackholekun@gmail.com"
 # 이메일 걍 자기꺼 쓰시면 됩니다
 terms = input("검색어와 조건을 입력해주세요. 예를 들어서 박테리아가 제목인 논문을 찾으실거면 Bacteria[TITLE] 이런 식으로요: \n")
 howmuch = input("논문은 몇 개정도 찾으실 생각이신가요?")
+colormap = input("wordcloud에 적용할 컬러맵 이름을 적어주세요. (Hint: Matplotlib colormap을 쳐보세요)")
 # Windows의 경우 시작하기 전에 코드단에서 폰트랑 경로부터 바꿔야 합니다. 
 
 def replace_function (a):
@@ -61,7 +62,7 @@ root.withdraw()
 dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='Please select a directory',filetypes = (("*.png","*png"),("*.jpg","*jpg"),("*.gif","*gif")))
 image = np.array(Image.open(dir_path))
 wordcloud = WordCloud(font_path = font_path,
-                      background_color="#ffffff",colormap="Dark2",width = 960, height=960,
+                      background_color="#ffffff",colormap=colormap,width = 960, height=960,
                       mask=image)
 # 이것도 개인적으로 복붙하려고 만든거라;; 
 

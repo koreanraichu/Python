@@ -16,6 +16,7 @@ while True:
     if input_text == "":
         break
 text = ''.join(text)
+colormap = input("wordcloud에 적용할 컬러맵 이름을 적어주세요. (Hint: Matplotlib colormap을 쳐보세요)")
 
 OS = platform.platform()
 if 'Linux' in OS: 
@@ -38,7 +39,7 @@ dir_path = filedialog.askopenfilename(parent=root,initialdir=default_dir,title='
 image = np.array(Image.open(dir_path)) 
 # 마스킹할 이미지(흰 바탕에 검정색을 권장함)
 wordcloud = WordCloud(font_path = font_path,stopwords=STOPWORDS,
-                      background_color="#ffffff",colormap="magma",width = 960, height=960,
+                      background_color="#ffffff",colormap=colormap,width = 960, height=960,
                       mask=image)
 # Font path: 글꼴 설정하실 경우 여기에 쓰세요
 # background color: wordcloud 배경 설정할 때 여기서 하세요 

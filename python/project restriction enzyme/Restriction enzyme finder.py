@@ -37,7 +37,6 @@ else:
     pass
 
 enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
-enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
 FILE_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA를 임력해주세요. Genbank 파일을 불러오실거면 Genbank를 입력해주세요. ').upper()
 if FILE_open == 'FASTA':
     root = tkinter.Tk()

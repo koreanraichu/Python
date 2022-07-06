@@ -53,13 +53,6 @@ class RE_treatment:
             before_seq = before_seq.replace("Y","[CT]")
         return before_seq
     # Or: 시퀀스 데이터에 N 말고 ATGC 말고 다른 알파벳이 있을 경우, 해당하는 정규식 문법으로 바꾼다. 
-
-filter = input("sticky로 자르는 제한효소만 보고 싶으면 sticky, blunt로 자르는 제한효소만 보고 싶으면 blunt를 입력해주세요. ")
-# sticky: sticky end만 
-# blunt: blunt end만 
-# 암것도 안 쓰면 다 봅니다. filter에 따라 테이블 형태가 달라집니다. 
-# 소문자로 입력해주세요, 대소문자 변환 기능은 제공하지 않습니다.
-
 cut_filter = input("Sticky로 자르는 제한효소만 보고 싶으면 sticky, Blunt로 자르는 제한효소만 보고 싶으면 blunt, Nicked로 자르는 제한효소만 보고 싶으면 nicked를 입력해주세요. ")
 cut_filter = cut_filter.capitalize()
 # Cut feature에 대한 코드. DNA가 Double strand일 때 Nicked는 한 쪽만 달랑달랑하게 자릅니다. 

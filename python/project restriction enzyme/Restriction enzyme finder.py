@@ -146,16 +146,6 @@ cut_feature = enzyme_table.cut_feature[(enzyme_table['Enzyme'] == enzyme)]
 cut_feature = cut_feature.to_string(index=False)
 cut_feature = str(cut_feature)
 # blunt or sticky(나중에 저장 기능 추가할 때 넣을 예정입니다)
-# 정규식 처리
-res_site = enzyme_table.restriction_site[(enzyme_table['Enzyme'] == enzyme)]
-res_site = res_site.to_string(index=False)
-res_site = res_site.upper()
-res_site = str(res_site)
-# 자르는 시퀀스 처리
-cut_feature = enzyme_table.cut_feature[(enzyme_table['Enzyme'] == enzyme)]
-cut_feature = cut_feature.to_string(index=False)
-cut_feature = str(cut_feature)
-# blunt or sticky(나중에 저장 기능 추가할 때 넣을 예정입니다)
 
 root = tkinter.Tk()
 root.withdraw()

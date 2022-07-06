@@ -26,16 +26,6 @@ if 'Linux' in OS:
 else: 
     default_dir = 'C:\\'
 
-NEB_filter = input("혹시 NEB에서 취급하는 효소들만 보실거라면 NEB를 입력해주세요. ")
-NEB_filter = NEB_filter.upper()
-# NEB cutter에서 기본적으로 시퀀스 입력하면 나오는 효소들만 보여줍니다. (NEB에서 파는 애들만)
-if NEB_filter == "NEB":
-    enzyme_table = enzyme_table[enzyme_table['NEB_sell']== 'Yes']
-    enzyme_table.reset_index(inplace=True)
-else: 
-    NEB_filter = "All"
-    pass
-
 enzyme = input('시퀀스를 찾을 제한효소를 입력해주세요: ').strip()
 FILE_open = input('FASTA 파일을 불러오시겠습니까? 불러오실거면 FASTA를 임력해주세요. Genbank 파일을 불러오실거면 Genbank를 입력해주세요. ').upper()
 if FILE_open == 'FASTA':

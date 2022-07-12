@@ -154,13 +154,6 @@ two_cut_list = []
 multi_cut_list = []
 no_cut_list = []
 # 변수와 리스트(크게 건들 일 없음)
-count = 0
-count_nocut = 0
-once_cut_list = []
-two_cut_list = []
-multi_cut_list = []
-no_cut_list = []
-# 변수와 리스트(크게 건들 일 없음)
 
 root = tkinter.Tk()
 root.withdraw()

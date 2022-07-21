@@ -3,6 +3,23 @@ import re # 정규식용 모듈
 enzyme_table = pd.read_csv('/home/koreanraichu/restriction_merge.csv')
 # 통합 DB 모셔왔습니다 선생님. 
 
+def SeqtoString (a):
+    a = enzyme_table.sequence[(enzyme_table['Enzyme'] == enzyme)]
+    a = a.to_string(index = False)
+    a = str(a).strip()
+    return a
+def SitetoString (a):
+    a = enzyme_table.restriction_site[(enzyme_table['Enzyme'] == enzyme)]
+    a = a.to_string(index = False)
+    a = str(a).strip()
+    return a
+def NEB_selling (a):
+    a = enzyme_table.NEB_sell[(enzyme_table['Enzyme'] == enzyme)]
+    a = a.to_string(index = False)
+    a = str(a).strip()
+    return a
+# 함수 가즈아!!! 
+
 cut_filter = input("Sticky로 자르는 제한효소만 보고 싶으면 sticky, Blunt로 자르는 제한효소만 보고 싶으면 blunt, Nicked로 자르는 제한효소만 보고 싶으면 nicked를 입력해주세요. ")
 cut_filter = cut_filter.capitalize()
 # Cut feature에 대한 코드. DNA가 Double strand일 때 Nicked는 한 쪽만 달랑달랑하게 자릅니다. 
@@ -20,22 +37,16 @@ else:
     cut_filter = "All feature"
     pass
 
-def SeqtoString (a):
-    a = enzyme_table.sequence[(enzyme_table['Enzyme'] == enzyme)]
-    a = a.to_string(index = False)
-    a = str(a).strip()
-    return a
-def SitetoString (a):
-    a = enzyme_table.restriction_site[(enzyme_table['Enzyme'] == enzyme)]
-    a = a.to_string(index = False)
-    a = str(a).strip()
-    return a
-def NEB_selling (a):
-    a = enzyme_table.NEB_sell[(enzyme_table['Enzyme'] == enzyme)]
-    a = a.to_string(index = False)
-    a = str(a).strip()
-    return a
-# 함수 가즈아!!! 
+NEB_filter = input("혹시 NEB에서 취급하는 효소들만 보실거라면 NEB를 입력해주세요. ")
+NEB_filter = NEB_filter.upper()
+# NEB cutter에서 기본적으로 시퀀스 입력하면 나오는 효소들만 보여줍니다. (NEB에서 파는 애들만)
+if NEB_filter == "NEB":
+    enzyme_table = enzyme_table[enzyme_table['NEB_sell']== 'Yes']
+    enzyme_table.reset_index(inplace=True)
+else: 
+    NEB_filter = "All"
+    print(enzyme_table)
+    pass
 
 keyword = input("효소 이름으로 찾으실거면 enzyme을, restriction site sequence로 찾으실거면 sequence를 입력해주세요. 혹시 찾고자 하는 효소 이름이 명확하지 않으시다면 name을 입력해주세요. ")
 if keyword == "enzyme":
@@ -65,14 +76,15 @@ if keyword == "enzyme":
         DB_enzyme = str(enzyme_table['Enzyme'][i]).strip()
         DB_seq = str(enzyme_table['sequence'][i]).strip().upper()
         DB_site = str(enzyme_table['restriction_site'][i]).strip().upper()
+        DB_NEB = str(enzyme_table['NEB_sell']).strip()
         if find_seq == str(DB_seq) and DB_enzyme != enzyme:
             if Site_seq == DB_site:
                 Iso.append(DB_enzyme)
-                print("{0} | {1} | {2} | {3} | Isoschizomer".format(DB_enzyme,DB_seq,DB_site,NEB_sell))
+                print("{0} | {1} | {2} | {3} | Isoschizomer".format(DB_enzyme,DB_seq,DB_site,DB_NEB))
                 # 인식하는 시퀀스와 자르는 방식이 같은 제한효소
             elif Site_seq != DB_site: 
                 Neo.append(DB_enzyme)
-                print("{0} | {1} | {2} | {3} | Neoschizomer".format(DB_enzyme,DB_seq,DB_site,NEB_sell))
+                print("{0} | {1} | {2} | {3} | Neoschizomer".format(DB_enzyme,DB_seq,DB_site,DB_NEB))
                 # 인식하는 시퀀스는 같으나 자르는 방식이 다른 제한효소
         elif find_seq == str(DB_seq) and DB_enzyme == enzyme:
             pass

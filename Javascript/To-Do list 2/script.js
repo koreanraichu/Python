@@ -66,7 +66,7 @@ function summonTodo(e, todoId) {
     }
 
     todoItemElem[todoId].appendChild(todoEdit)
-    document.body.removeEventListener('dblclick', onClickBody)
+    document.body.removeEventListener('click', onClickBody)
 }
 
 function displayTodo() {

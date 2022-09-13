@@ -120,4 +120,8 @@ function init() {
     })
 }
 
+function todopagenation() {
+    const todoPage = document.getElementsByClassName('todo-post')
+}
+
 init()

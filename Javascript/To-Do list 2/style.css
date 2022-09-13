@@ -1,14 +1,9 @@
-@font-face {
-    font-family: 'DalseoHealingBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/DalseoHealingBold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 
 * {
     margin: 0;
     padding: 0;
-    font-family: 'DalseoHealingBold';
+    font-family: 'Galmuri9';
     font-size: 15pt;
     color: #2b2d42;
 }
@@ -38,6 +33,11 @@ button {
     justify-content: center;
     margin-top: 3rem;
     min-width: 600px;
+}
+.todo-page {
+    font-size: 5em;
+    text-align:center;
+    margin:5px auto;
 }
 
 .todo-title {

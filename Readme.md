@@ -1,5 +1,4 @@
 <h1>Welcome to my repository!</h1>
-<img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FC8axx%2FbtrrLOE5oyb%2FjcLghVGuRwwqmSytnDQFT0%2Fimg.jpg" width="300">
 프로필에서 봤던 Readme는 여기서 온 게 아닙니다. 아예 readme용으로 Repository를 새로 만들었습니다. <br>
 <br>
 깃헙에 올라오지는 않지만, 일단 R도 하고는 있습니다. <br>

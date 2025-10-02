@@ -21,10 +21,10 @@ conn = oracledb.connect(user="koreanraichu", password="testpass", dsn=dsn)
 conn.autocommit = True
 cursor = conn.cursor()
 
-# cursor.execute("UPDATE POKEMON SET ANNOTATION='껍질포켓몬' WHERE dex_no=9")
+# cursor.execute("")
 # conn.commit()
 
-cursor.execute("SELECT * FROM POKEMON WHERE FORM_CODE LIKE 'MEGA%' ORDER BY DEX_NO")
+cursor.execute("SELECT * FROM POKEMON ORDER BY DEX_NO")
 data = cursor.fetchall()
 
 drawing_table(data)

@@ -3,7 +3,6 @@ import random
 # 업앤다운입니다. 근데 범위가 이제 1부터 100까지인. 
 x = random.randrange(1, 101)
 
-# 입력을 받고... 
 # 솔직히 백준이었으면 import sys부터 들어갔을듯... 
 y=int(input('숫자 하나를 입력해주세요.'))
 

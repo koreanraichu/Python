@@ -4,10 +4,10 @@ import random
 x = random.randrange(1, 101)
 
 # 입력을 받고... 
-# 솔직히 백준이었으면 import sys부터 들어갔을듯. 
+# 솔직히 백준이었으면 import sys부터 들어갔을듯... 
 y=int(input('숫자 하나를 입력해주세요.'))
 
-# 여기 어딘가에 있는 Hogh&Low랑 달리 얘는 맞출떄까지 하는겁니다. 단판승 아님. 
+# High&Low랑 달리 얘는 맞출떄까지 하는겁니다. 단판승 아님. 
 while x != y:
     # 입력한 수가 더 클때
     if x < y: 

@@ -1,7 +1,16 @@
-<h1>Project: Restriction enzyme</h1>
-영문명이라 거창해보이는거지 사실상 프로젝트 제한효소죠, 네. <br>
-크게 Cutter, Finder, Searcher로 나뉘어져 있고 Jupyter file(ipynb)과 python file(py file)이 있습니다. <br>
-각 파일이 뭐 하는 파일인지는 아래를 참조해주시면 되겠습니다. <br>
-<br>
-프로젝트 설명은 <a href="https://www.notion.so/python-pycharm/Project-Restriction-enzyme-0dc3ed7ecce1471d87a2587f3d03d0f5">이 쪽</a>에서 보실 수 있습니다. <br>
-제작과정(이라고 쓰고 개고생이라고 읽음)은 <a href="https://koreanraichu.sfuhost.com/">개인 워드프레스</a>에서 보실 수 있습니다. 
+# Project Restriction Enzyme
+영문명이라 거창해보이는거지 사실상 프로젝트 제한효소죠, 네. \
+크게 Cutter, Finder, Searcher로 나뉘어져 있고 Jupyter file(ipynb)과 python file(py file)이 있습니다. \
+각 파일이 뭐 하는 파일인지는 아래를 참조해주시면 되겠습니다. \
+\
+제작과정(이라고 쓰고 개고생이라고 읽음)은 [티스토리](https://koreanraichu.tistory.com/)에서 보실 수 있습니다. 
+
+## Notice
+1. py파일은 아직 수정 안됐고 ipynb파일에서 블록 다 수정 끝나면 py파일도 수정 들어갑니다. 애초에 먼저 만든 파일도 ipynb였고 py파일은 걍 ipynb파일에서 블록 빼고 하나로 합친거예요. 
+1. FASTA, Genbank 파일 처리때문에 Biopython이 설치된 상태여야 합니다. (수기로 쓸거여도 그거 깔아야 모듈을 온전히 불러옵니다) 모듈을 빼면요? 안빼봐서 모르겠습니다. 
+
+## 그래서 뭐 하는 파일임?
+각 파일의 사용법은 Jupyter 파일의 블록 위에 있습니다. 
+1. Cutter: 특정 DNA 시퀀스를 특정 제한효소로 어떻게 자르는지를 보여줍니다. 자르는 부분이 없으면 없다고 나옵니다. 
+1. Finder: 특정 DNA 시퀀스를 자르는 모든 제한효소를 볼 수 있습니다. 크게 자르는 형태(sticky, blunt, nicked)와 NEB 판매 여부 필터링이 가능합니다. 
+1. Searcher: 그 저장소에 csv파일 있죠? 그 파일이 수제로 구축한 DB입니다... Searcher는 그 DB에서 제한효소 정보(이름, 인식하는 시퀀스, 자르는 시퀀스, NEB 판매여부)를 검색할 수 있는 파일입니다. 

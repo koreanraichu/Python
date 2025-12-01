@@ -1,22 +1,25 @@
 import random
-
-# 업앤다운입니다. 근데 범위가 이제 1부터 100까지인. 
-x = random.randrange(1, 101)
-
-# 솔직히 백준이었으면 import sys부터 들어갔을듯... 
-y=int(input('숫자 하나를 입력해주세요.'))
-
-# High&Low랑 달리 얘는 맞출떄까지 하는겁니다. 단판승 아님. 
-while x != y:
-    # 입력한 수가 더 클때
-    if x < y: 
-        print('다운!!!')
-        y=int(input('다시 입력해주세요.'))
-    # 입력한 수가 더 클때
-    elif x > y: 
-        print('업!!')
-        y=int(input('다시 입력해주세요.'))
-    # 정답이면 나감 
-    else: 
+pick=0
+pick=random.randrange(1,51,1)
+# 일단 범위는 1~100으로 잡았음
+answer=input("과연 이 숫자는 몇일까요? ")
+# 답 입력받고
+turn=0
+while turn < 10:
+    if int(answer) < pick:
+        print("Up!")
+        answer=input("다시 생각해봅시다! ")
+        turn += 1
+    elif int(answer) > pick:
+        print("Down!")
+        answer = input("다시 생각해봅시다! ")
+        turn += 1
+    elif turn >= 10:
+        print("턴 오버입니다. ")
         break
-print('정답입니다!')
+    else:
+        print("정답입니다! ")
+        print(turn, "번만에 맞추셨습니다!")
+        break
+# 답을 맞추기 전까지 계속 해야 하니까 while 받습니다.
+# try수 출력 추가

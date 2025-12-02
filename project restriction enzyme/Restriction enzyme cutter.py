@@ -20,39 +20,31 @@ day = datetime.today().day
 OS = platform.platform()
 if 'Linux' in OS:
     default_dir = '/'
+elif 'Darwin' in OS or 'macOS' in OS:
+    default_dir = '/Users'
 else: 
     default_dir = 'C:\\'
+# Mac은 뭐라고 뜨는지 몰라서 선택지에 없었는데 제미나이가 알려주더군요. (이거 만들 때 제미나이 없었음)
 
-class RE_treatment:
-    def RE_wildcard(self,before_seq):
-        self.before_seq = before_seq
-        before_seq = before_seq.replace("N",".")
-        return before_seq
-    # Wildcard: 시퀀스 데이터에 N이 있을 경우 Wildcard로 바꾼다. 
-    def RE_or(self,before_seq):
-        self.before_seq = before_seq
-        if "B" in before_seq:
-            before_seq = before_seq.replace("B","[CGT]")
-        elif "D" in before_seq:
-            before_seq = before_seq.replace("D","[AGT]")
-        elif "H" in before_seq:
-            before_seq = before_seq.replace("H","[ACT]")
-        elif "K" in before_seq:
-            before_seq = before_seq.replace("K","[GT]")
-        elif "M" in before_seq:
-            before_seq = before_seq.replace("M","[AC]")
-        elif "R" in before_seq:
-            before_seq = before_seq.replace("R","[AG]")
-        elif "S" in before_seq:
-            before_seq = before_seq.replace("S","[CG]")
-        elif "V" in before_seq:
-            before_seq = before_seq.replace("V","[ACG]")
-        elif "W" in before_seq:
-            before_seq = before_seq.replace("W","[AT]")
-        elif "Y" in before_seq:
-            before_seq = before_seq.replace("Y","[CT]")
-        return before_seq
-    # Or: 시퀀스 데이터에 N 말고 ATGC 말고 다른 알파벳이 있을 경우, 해당하는 정규식 문법으로 바꾼다. 
+# 코드 개편이 있었습니다. 원래는 줄줄이 나열했었는데 제미나이의 도움으로... 
+
+class RE_treatment(): 
+    # A, T, G, C 외의 다른 알파벳들을 전부 와일드카드로 변환
+    CODE_TO_REGEX= {
+        "N":".", "B": "[CGT]", "D": "[AGT]", "H": "[ACT]", "K": "[GT]", 
+        "M": "[AC]", "R": "[AG]", "S": "[CG]", "V": "[ACG]", 
+        "W": "[AT]", "Y": "[CT]"
+    }
+    def RE_treatment_all(self, before_seq):
+        # 이제 제한효소 시퀀스에 A, T, G, C 외에 다른 게 있으면 저기서 찾아서 변환하면 됩니다. 
+        # 그리고 그 일을 얘가 할거예요. 
+        def replacer(match):
+            return self.CODE_TO_REGEX[match.group(0)]
+        pattern = "[" + "".join(self.CODE_TO_REGEX.keys()) + "]" # 위에 있는 딕셔너리에서 갖다가
+        
+        return re.sub(pattern, replacer, before_seq) # 변환합니다. 
+# 여기까지가 클래스입니다 
+
 cut_filter = input("Sticky로 자르는 제한효소만 보고 싶으면 sticky, Blunt로 자르는 제한효소만 보고 싶으면 blunt, Nicked로 자르는 제한효소만 보고 싶으면 nicked를 입력해주세요. ")
 cut_filter = cut_filter.capitalize()
 # Cut feature에 대한 코드. DNA가 Double strand일 때 Nicked는 한 쪽만 달랑달랑하게 자릅니다. 
@@ -137,15 +129,10 @@ def cut_func (a,b):
         res_loc_list.append(str(loc+1))
     return res_loc_list
 # 여기가 위치 관련 함수입니다.
-def convert (a):
-    RE = RE_treatment()
-    if "N" in res_find:
-        res_find_after = RE.RE_wildcard(res_find)
-    elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find or "V" in res_find or "W" in res_find or "Y" in res_find: 
-        res_find_after = RE.RE_or(res_find)
-    return res_find_after
-# 함수가 대체 몇 개야...!!! 
-# 저 or 진짜 무식하게 다 때려박았음... 줄일 방법 제보 받아요... 
+
+root = tkinter.Tk()
+root.withdraw()
+save_path = filedialog.askdirectory()
 
 count = 0
 count_nocut = 0
@@ -155,50 +142,61 @@ multi_cut_list = []
 no_cut_list = []
 # 변수와 리스트(크게 건들 일 없음)
 
-root = tkinter.Tk()
-root.withdraw()
-save_path = filedialog.askdirectory()
+# 파일명 관련 구역
+output_filename = 'Result_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name)
+full_filepath = os.path.join(save_path, output_filename)
+# 이쪽은 크게 건드릴 일 없습니다. 
 
-with open('Result_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',encoding='utf-8') as f:
+with open(full_filepath,'w',encoding='utf-8') as f:
     f.write("=====Sequence information=====\nSequence name: {0} | Sequence length: {1}bp \nSequence description: {2}\n".format(sequence_name,len(sequence),sequence_description))
     f.write("=====Running information======\nFilter selected: {0} | {1} \nRestriction enzyme which cuts this sequence: \n".format(cut_filter,NEB_filter))
     f.write("=====Result=====\n")
-    for i in range(len(enzyme_table)):
-        enzyme = enzyme_table['Enzyme'][i]
-        feature = enzyme_table['cut_feature'][i]
-        res_find = enzyme_table['sequence'][i]
-        res_find = str(res_find)
-        res_find_before = str(res_find)
-        while True:
-            if "N" in res_find: 
-                res_find = str(convert(res_find))
-            elif "B" in res_find or "D" in res_find or "H" in res_find or "K" in res_find or "M" in res_find or "R" in res_find or "S" in res_find:
-                res_find = str(convert(res_find))
-            else: 
-                break
-        # 정규식 처리
-        Findall = re.findall(res_find,sequence)
-        res_loc_list = []
-        if Findall: 
-            count += 1
+# 3. 파일 저장 이슈때문에... 아니 그거 아니더라도 일단 안 돌아갈 수 있으니까 예외처리 추가... 
+    try:
+        for i in range(len(enzyme_table)):
+            treatment = RE_treatment()
+            enzyme = enzyme_table['Enzyme'][i]
+            feature = enzyme_table['cut_feature'][i]
+            res_find_before = str(enzyme_table['sequence'][i])
+
+            # 변환 로직 (이전에 개선된 treatment.RE_treatment_all 사용)
+            res_find_after = treatment.RE_treatment_all(res_find_before)
+            
+            Findall = re.findall(res_find_after, sequence)
             site_count = len(Findall)
-            cut_func(res_find,sequence)
-            if site_count == 1:
-                once_cut_list.append(enzyme)
-            elif site_count == 2: 
-                two_cut_list.append(enzyme)
-            else: 
-                multi_cut_list.append(enzyme)
-            res_loc_list = ', '.join(res_loc_list)
-            f.write("Enzyme: {0} | Sequence: {1} | Cut feature: {2} | {3} times cut \nWhere(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
-        else: 
-            count += 0
-            count_nocut += 1
-            no_cut_list.append(enzyme)
+            res_loc_list = []
+            
+            if Findall:
+                # 얘도 저장 이슈때문에 추가한건데 프로그레스 보이고 좋네요 ㅋㅋ 
+                print(f"DEBUG: Processing cutting enzyme {enzyme}")
+                
+                # cut_func 호출
+                cut_func(res_find_after,sequence) 
+                
+                # ... (나머지 리스트 추가 및 파일 쓰기 로직) ...
+
+                res_loc_list = ', '.join(res_loc_list)
+                f.write("Enzyme: {0} | Sequence: {1} | Cut feature: {2} | {3} times cut \nWhere(bp): {4} \n".format(enzyme,res_find_before,feature,site_count,res_loc_list))
+            
+            else:
+                # ... (no_cut_list 추가 로직) ...
+                no_cut_list.append(enzyme)
+                print(f"DEBUG: Enzyme {enzyme} not found.")
+                
+    # 예외처리하다가 오류가 나면 FATAL ERROR가 보이게 될 거예요. 
+    except Exception as e:
+        print(f"\nFATAL ERROR during enzyme loop: {e}")
+        # 오류가 발생했음을 파일에도 기록
+        f.write(f"\n--- ERROR OCCURRED DURING ANALYSIS LOOP ---\nError: {e}\n--- Partial results saved ---\n")
+
+    # 최종 출력부 (try/except 블록이 끝난 후, with open 블록 안에서 실행)
+    total_cut = len(once_cut_list) + len(two_cut_list) + len(multi_cut_list)
+    total_nocut = len(no_cut_list)
     once_cut_list = ', '.join(once_cut_list)
     two_cut_list = ', '.join(two_cut_list)
     multi_cut_list = ', '.join(multi_cut_list)
     no_cut_list = ', '.join(no_cut_list)
+    
     # 출력부
     f.write("Total: {0} enzymes cut input sequence, {1} enzymes never cut this sequence. \n".format(count,count_nocut))
     f.write("Enzymes no cut this sequence: {0} \n".format(no_cut_list))
@@ -207,5 +205,5 @@ with open('Result_{0}-{1}-{2}_{3}'.format(year,month,day,sequence_name),'w',enco
     f.write("Enzymes cut this sequence multiple: {0} \n".format(multi_cut_list))
     f.close()
     directory = save_path
-    print("파일이 {0}에 저장되었습니다. ".format(directory))
+    print("파일이 {0}에 저장되었습니다. ".format(full_filepath))
 # 컷수도 세주고 자르는 효소랑 안 자르는 효소도 목록으로 쫘라락...

@@ -7,7 +7,7 @@ def color_hex(r = 255, g = 255, b = 255):
 
 # rgb 16진수를 10진수로 
 # 입력은 #rrggbb를 상정한다. 
-def color_dec(color):
+def color_dec(color = '#ffffff'):
     # #을 떼고 여섯자리로 만든 다음 
     color = color[1:]
     # 분리해야죠

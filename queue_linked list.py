@@ -45,6 +45,9 @@ class make_queue:
             # 디큐를 할 때는 프론드 포인터가 한칸 이동합니다
             self.frontpointer = self.frontpointer.nextorder
             self.queuesize -= 1
+            # 큐가 비면 두 포인터가 다시 None을 가리키게 해 줘야 한다 
+            if self.frontpointer is None: 
+                self.rearpointer = None
         return dequeue_pointer.value
     
     # 큐 좀 봅시다

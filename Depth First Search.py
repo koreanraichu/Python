@@ -52,7 +52,7 @@ nodeA.childlist[0].childlist[1].childlist[1].add_child(nodeK)
 
 # D-M/N
 nodeA.childlist[0].childlist[0].add_child(nodeM)
-nodeA.childlist[0].childlist[0].add_child(nodeM)
+nodeA.childlist[0].childlist[0].add_child(nodeN)
 
 # 위에 저 트리를 DFS로 탐색해보자. 
 def DFS (_rootnode, _search_list, _depth = 0):

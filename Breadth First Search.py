@@ -52,7 +52,7 @@ nodeA.childlist[0].childlist[1].childlist[1].add_child(nodeK)
 
 # D-M/N
 nodeA.childlist[0].childlist[0].add_child(nodeM)
-nodeA.childlist[0].childlist[0].add_child(nodeM)
+nodeA.childlist[0].childlist[0].add_child(nodeN)
 
 # BFS
 # DFS가 수직이라면 얘는 수평이다. 탐색할 때 인접한 노드 리스트를 다 담아둔다. (방문한, 방문할 두개)

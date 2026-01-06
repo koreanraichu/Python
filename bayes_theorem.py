@@ -20,4 +20,4 @@ def bayes_theorem(prior, sensitivity, false_positive):
     return posterior
 
 result = bayes_theorem(0.01, 0.95, 0.05)
-print(f"검사 결과가 양성일 때, 실제로 병에 걸렸을 확률: {result:.2%}")
+print(f"P(A|B): {result:.2%}")

@@ -4,8 +4,8 @@
 
 ## 폴더 일람
 1. Py file: 그냥 평범한 파이썬 파일들입니다. 
-1. biopython: 예전에 cookbook 보면서 혼자 따라했던 것들이 들어있습니다. (전부 py)
-   * Biopython을 설치하셔야 원만하게 구동됩니다. 
+   1. biopython: 예전에 cookbook 보면서 혼자 따라했던 것들이 들어있습니다. (전부 py)
+      * Biopython을 설치하셔야 원만하게 구동됩니다. 
 2. Jupyter file: Jupyter notebook으로 작업한 파일이 들어있습니다. (ipynb) 일단 뭘 설치해야 하는 게 많습니다. 
    1. .ipynb_checkpoints: 왜 있는지 모르겠습니다. 
    2. project: 개인적인 프로젝트들이 들어있습니다.

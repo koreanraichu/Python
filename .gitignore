@@ -2,6 +2,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.idea/
 
 # Python 관련
 __pycache__/

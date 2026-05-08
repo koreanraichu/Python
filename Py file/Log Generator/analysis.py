@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 # 그래프 전역 설정 구역
 # 그래프를 그리기 위한 기본 설정
 plt.rcParams["figure.figsize"] = (10, 5) 
-plt.rcParams['font.family'] = 'Nanumsquare_ac'
 plt.rcParams['font.size'] = 14
 plt.rcParams['axes.unicode_minus'] = False
 
@@ -100,7 +99,6 @@ plt.xlabel("Hour")
 plt.ylabel("Events")
 plt.xticks(rotation=0)
 plt.grid(True)
-
 
 plt.savefig("Hourly Event Distribution.png")
 plt.close()

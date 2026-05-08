@@ -101,8 +101,9 @@ plt.ylabel("Events")
 plt.xticks(rotation=0)
 plt.grid(True)
 
-plt.show(block=False)
+
 plt.savefig("Hourly Event Distribution.png")
+plt.close()
 
 # 에러 비율 
 query = """
@@ -117,7 +118,6 @@ sizes = [r[1] for r in rows]
 
 plt.pie(sizes, labels=labels, autopct='%1.1f%%')
 plt.title("Error Rate")
-plt.show(block=False)
-plt.savefig("Error Rate.png")
 
-run_all()
+plt.savefig("Error Rate.png")
+plt.close()

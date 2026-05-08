@@ -6,23 +6,25 @@
 # 모듈 ZONE
 import sqlite3 # SQLite 
 
-conn = sqlite3.connect("events.db")
-cursor = conn.cursor()
 
-create_table_query = """
-CREATE TABLE IF NOT EXISTS events (
-    event_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    search_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
-    event_type TEXT NOT NULL,
-    query TEXT,
-    result_count INTEGER,
-    compound_id INTEGER,
-    error_type TEXT,
-    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-);
-"""
+def init_db():
+    conn = sqlite3.connect("events.db")
+    cursor = conn.cursor()
 
-cursor.execute(create_table_query)
-print('테이블이 생성되었습니다. ')
-conn.commit()
+    create_table_query = """
+    CREATE TABLE IF NOT EXISTS events (
+        event_id INTEGER PRIMARY KEY AUTOINCREMENT,
+        search_id INTEGER NOT NULL,
+        user_id INTEGER NOT NULL,
+        event_type TEXT NOT NULL,
+        query TEXT,
+        result_count INTEGER,
+        compound_id INTEGER,
+        error_type TEXT,
+        timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+    """
+
+    cursor.execute(create_table_query)
+    print('테이블이 생성되었습니다. ')
+    conn.commit()
